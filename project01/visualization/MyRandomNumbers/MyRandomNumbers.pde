@@ -22,28 +22,23 @@ void setup() {
     
     fill(255,40);
     noStroke();
+    
     //Our line of Google numbers
-    for (int i = 0; i < numbers.length; i++)
-    {
-      ellipse(numbers[i] * 8, width/2, 8,8);
-    }
-    //A line of random numbers
-    for (int i = 0; i < numbers.length; i++)
-    {
-      ellipse(ceil(random(0,99)) * 8, height/2 + 20, 8,8);
-    }
-    //A line of random numbers
-    for (int i = 0; i < numbers.length; i++)
-    {
-      ellipse(ceil(random(0,99)) * 8, height/2 + 40, 8,8);
-    }
-    //A line of random numbers
-    /*for (int i = 0; i < numbers.length; i++)
-    {
-      ellipse(ceil(random(0,99)) * 8, height/2 + 60, 8,8);
-    }*/
+    circliness(numbers, 0);
+    //Random lines
+    circliness(getRandomNumbers(numbers.length), 20);
+    circliness(getRandomNumbers(numbers.length), 40);
+    circliness(getRandomNumbers(numbers.length), 60);
     
     barGraph(numbers, 400);
+}
+
+void circliness(int[] nums, float y)
+{
+  for (int i = 0; i < nums.length; i++)
+  {
+    ellipse(nums[i] * 8, height/2 + y, 8,8);
+  }
 }
 
 void barGraph(int[] nums, float y) {
@@ -63,7 +58,8 @@ void barGraph(int[] nums, float y) {
  //Draw the bar graph
  for (int i = 0; i < counts.length; i++)
  {
-   fill(255, counts[i] * 30, 0);
+   colorMode(HSB);
+   fill(counts[i] * 30, 255, 255);
    rect(i * 8, y, 8, -counts[i] * 10);
  }
 }
