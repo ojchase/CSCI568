@@ -22,10 +22,17 @@ void setup() {
     
     fill(255,40);
     noStroke();
+    //Our line of Google numbers
     for (int i = 0; i < numbers.length; i++)
     {
     ellipse(numbers[i] * 8, width/2, 8,8);
     }
+    //A line of random numbers
+    for (int i = 0; i < numbers.length; i++)
+    {
+      ellipse(ceil(random(0,99)) * 8, height/2 + 20, 8,8);
+    }
+    
 }
 
 void draw() {
