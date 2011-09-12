@@ -23,14 +23,21 @@ void setup() {
     fill(255,40);
     noStroke();
     
+    /*
     //Our line of Google numbers
     circliness(numbers, 0);
     //Random lines
     circliness(getRandomNumbers(numbers.length), 20);
     circliness(getRandomNumbers(numbers.length), 40);
     circliness(getRandomNumbers(numbers.length), 60);
+    */
     
-    barGraph(numbers, 400);
+    barGraph(numbers, 100);
+    for (int i = 1; i < 7; i++)
+    {
+      int[] randoms = getRandomNumbers(numbers.length);
+      barGraph(randoms, 100 + (i * 90));
+    }
 }
 
 void circliness(int[] nums, float y)
