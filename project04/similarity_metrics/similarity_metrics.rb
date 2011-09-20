@@ -37,7 +37,6 @@ def smc(val1, val2)
         result = result + 1
       end
     end
-    puts result
     result = result / denom
   end
   
@@ -45,8 +44,23 @@ def smc(val1, val2)
 end
 
 def jaccard(val1, val2)
-  result = "Not yet implemented"
-  puts "Jaccard similarity is #{result}!"
+  if val1.values.length != val2.values.length
+    return "SMC can't be calculated as objects have a different number of values!"
+  else
+    length = val1.values.length
+    denom = length.to_f
+    result = 0
+    for i in (0...length)
+      if(val1.values[i] == val2.values[i])
+        if(val1.values[i] != 0)
+          result = result + 1
+        end
+      end
+    end
+    result = result / denom
+  end
+  
+  puts "Jaccard Similarity is #{result}!"
 end
 
 def pearson(val1, val2)
@@ -63,8 +77,8 @@ end
 if __FILE__ == $0
   x = ComparisonObject.new([1, 5, "fish", 2, 3])
   
-  a = ComparisonObject.new([1, 2, 3, 4])
-  b = ComparisonObject.new([5, 2, 7, 4])
+  a = ComparisonObject.new([1, 0, 3, 4])
+  b = ComparisonObject.new([5, 0, 7, 4])
   
   functions = [:euclidean, :smc, :jaccard, :pearson, :cosine]
   functions.each do |func|
