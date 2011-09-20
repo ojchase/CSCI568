@@ -10,27 +10,14 @@ class ComparisonObject
   end
 end
 
-def func1()
-  puts 1
-end
-
-def func2()
-  puts 2
-end
-
-def printme(method)
-  method
-end
-
 def euclidean(val1, val2)
   if val1.values.length != val2.values.length
     return "Euclidean Distance can't be calculated as objects have a different number of values!"
   else
+    length = val1.values.length
     result = 0
-    i = 0
-    val1.values.each do |value|
-      result = result + value*value
-      i = i + 1
+    for i in (0...length)
+      result = result + (val1.values[i]-val2.values[i])**2
     end
     result = Math.sqrt(result)
   end
@@ -39,7 +26,21 @@ def euclidean(val1, val2)
 end
 
 def smc(val1, val2)
-  result = "Not yet implemented"
+  if val1.values.length != val2.values.length
+    return "SMC can't be calculated as objects have a different number of values!"
+  else
+    length = val1.values.length
+    denom = length.to_f
+    result = 0
+    for i in (0...length)
+      if(val1.values[i] == val2.values[i])
+        result = result + 1
+      end
+    end
+    puts result
+    result = result / denom
+  end
+  
   puts "SMC is #{result}!"
 end
 
@@ -63,8 +64,8 @@ if __FILE__ == $0
   x = ComparisonObject.new([1, 5, "fish", 2, 3])
   
   a = ComparisonObject.new([1, 2, 3, 4])
-  b = ComparisonObject.new([1, 2, 3, 4])
-  y = {a, b}
+  b = ComparisonObject.new([5, 2, 7, 4])
+  
   functions = [:euclidean, :smc, :jaccard, :pearson, :cosine]
   functions.each do |func|
     m = x.method(func)
