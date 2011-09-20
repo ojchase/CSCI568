@@ -49,6 +49,9 @@ def euclidean(object1, object2)
     end
     result = Math.sqrt(result)
   end
+  
+  #normalizing!
+  result = 1 / (1 + result.to_f)
 
   puts "Euclidean distance is #{result}!"
   return result
