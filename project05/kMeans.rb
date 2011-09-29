@@ -20,9 +20,24 @@ class KMeans
       recalculateCentroids(objects, centroids)
 
     end
+    
+    puts sse(objects, centroids)
 
   end
-
+  
+  def sse(objects, centroids)
+    centroids.each do |centroid|
+      sse = 0
+      objects.each do |obj|
+        if(obj.getCentroid == centroid)
+          sse = sse + (euclideanNotNormalized(obj, centroid.getDataPoint))**2
+            puts sse
+        end
+      end
+      puts "SSE for #{centroid} is #{sse}"
+    end
+  end
+  
   def recalculateCentroids(objects, centroids)
     len = objects[0].values.length
     centroids.each do |centroid|
