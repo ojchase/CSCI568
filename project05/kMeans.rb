@@ -2,10 +2,9 @@ require 'similarity_metrics.rb'
 require 'dataObject.rb'
 
 class KMeans
-  #similarityFunction = method(:euclidean)
   def run(objects, k)
     centroids = initCentroids(objects, k)
-    print(centroids)
+    #print(centroids)
     nochanges = false
 
     while(!nochanges)
@@ -20,67 +19,77 @@ class KMeans
       recalculateCentroids(objects, centroids)
 
     end
-    
-    puts sse(objects, centroids)
+
+    showResults(objects, centroids)
 
   end
-  
-  def sse(objects, centroids)
+
+  def showResults(objects, centroids)
     centroids.each do |centroid|
-      sse = 0
+      puts centroid
+      puts "Includes the following points:"
       objects.each do |obj|
         if(obj.getCentroid == centroid)
-          sse = sse + (euclideanNotNormalized(obj, centroid.getDataPoint))**2
-            puts sse
+          puts "    #{obj}"
         end
       end
-      puts "SSE for #{centroid} is #{sse}"
+      puts("SSE: #{sse(objects, centroid)}")
+      puts
     end
   end
-  
+
+  def sse(objects, centroid)
+    sse = 0
+    objects.each do |obj|
+      if(obj.getCentroid == centroid)
+        sse = sse + (euclideanNotNormalized(obj, centroid.getDataPoint))**2
+      end
+    end
+    return sse
+  end
+
   def recalculateCentroids(objects, centroids)
     len = objects[0].values.length
     centroids.each do |centroid|
       dimensionSums = Array.new(len)
       dimensionSums.fill(0)
       usingCentroid = 0
-      puts "Centroid #{centroid.getID} started at #{centroid.getCoordinates}"
+      #puts "Centroid #{centroid.getID} started at #{centroid.getCoordinates}"
       objects.each do |obj|
         if(obj.getCentroid == centroid)
-          puts "   #{obj} is on this centroid!"
+          #puts "   #{obj} is on this centroid!"
           for i in (0..len-1)
             dimensionSums[i] = dimensionSums[i] + obj.values[i]
           end
           usingCentroid = usingCentroid + 1
         end
       end
-      print dimensionSums
+      #print dimensionSums
       for i in (0..dimensionSums.length - 1)
-        puts dimensionSums[i]
-        puts usingCentroid
+        #puts dimensionSums[i]
+        #puts usingCentroid
         dimensionSums[i] = dimensionSums[i] / usingCentroid.to_f
       end
       centroid.setCoordinates(dimensionSums)
-      puts "Centroid #{centroid.getID} moved to #{centroid.getCoordinates}"
+      #puts "Centroid #{centroid.getID} moved to #{centroid.getCoordinates}"
     end
   end
 
   #moves object to the closest centroid and returns true if it moved
   def pickNearestCentroid(object, centroids)
-    puts "#{object} is currently on centroid #{object.getCentroid}"
+    #puts "#{object} is currently on centroid #{object.getCentroid}"
     currentCentroid = object.getCentroid()
 
     len = centroids.length
     distanceToCentroids = Array.new(len)
 
     for i in (0..len-1)
-      #distanceToCentroids[i] = @similarityFunction.call(object, centroids[i].getDataPoint)
-      puts "    #{object} is #{1 - euclidean(object, centroids[i].getDataPoint)} from #{centroids[i]}"
+      #puts "    #{object} is #{1 - euclidean(object, centroids[i].getDataPoint)} from #{centroids[i]}"
       distanceToCentroids[i] = 1 - euclidean(object, centroids[i].getDataPoint)
     end
     closestCentroid = centroids[distanceToCentroids.index(distanceToCentroids.min)]
     object.setCentroid(closestCentroid)
-    puts "#{object} is now on centroid #{object.getCentroid}"
+    #puts "#{object} is now on centroid #{object.getCentroid}"
     return currentCentroid.nil? || currentCentroid != closestCentroid
   end
 
