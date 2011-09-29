@@ -2,24 +2,71 @@ require 'similarity_metrics.rb'
 require 'dataObject.rb'
 
 class KMeans
+  #similarityFunction = method(:euclidean)
   def run(objects, k)
-    puts objects
-    puts "#{k} centroids"
-
     centroids = initCentroids(objects, k)
     print(centroids)
+    nochanges = false
 
-    i = 0
-=begin
-    objects.each do |obj|
-      obj.setCentroid(i)
-      i = i + 1
+    while(!nochanges)
+      nochanges = true
+      objects.each do |obj|
+        moved = pickNearestCentroid(obj, centroids)
+        if(moved)
+          nochanges = false
+        end
+      end
+
+      recalculateCentroids(objects, centroids)
+
     end
 
-    objects.each do |obj|
-      puts(obj.getCentroid())
+  end
+
+  def recalculateCentroids(objects, centroids)
+    len = objects[0].values.length
+    dimensionSums = Array.new(len)
+    usingCentroid = 0
+    centroids.each do |centroid|
+      puts "Centroid #{centroid.getID} started at #{centroid.getCoordinates}"
+      objects.each do |obj|
+        puts obj.getCentroid
+        puts centroid
+        puts(obj.getCentroid == centroid)
+        if(obj.getCentroid == centroid)
+          for i in (0..len-1)
+            dimensionSums[i] = dimensionSums[i] + obj.values[i]
+          end
+          usingCentroid = usingCentroid + 1
+        end
+      end
+      for i in (0..dimensionSums.length)
+        puts dimensionSums[i]
+        puts usingCentroid
+        dimensionSums[i] = dimensionSums[i] / usingCentroid.to_f
+      end
+      centroid.setCoordinates(dimensionSums)
+      puts "Centroid #{centroid.getID} moved to #{centroid.getCoordinates}"
     end
-=end
+  end
+
+  #moves object to the closest centroid and returns true if it moved
+  def pickNearestCentroid(object, centroids)
+    puts "#{object} is currently on centroid #{object.getCentroid}"
+    currentCentroid = object.getCentroid()
+
+    len = centroids.length
+    distanceToCentroids = Array.new(len)
+
+    for i in (0..len-1)
+      #distanceToCentroids[i] = @similarityFunction.call(object, centroids[i].getDataPoint)
+      puts "    #{object} is #{1 - euclidean(object, centroids[i].getDataPoint)} from #{centroids[i]}"
+      distanceToCentroids[i] = 1 - euclidean(object, centroids[i].getDataPoint)
+    end
+    closestCentroid = centroids[distanceToCentroids.index(distanceToCentroids.min)]
+    object.setCentroid(closestCentroid)
+    puts "#{object} is now on centroid #{object.getCentroid}"
+    return currentCentroid.nil? || currentCentroid != closestCentroid
   end
 
   def initCentroids(objects, k)
@@ -45,7 +92,7 @@ class KMeans
         i = i + 1
       end
     end
-    
+
     #Randomly pick centroids in that range!
     centroids = Array.new(k)
     r = Random.new
@@ -54,10 +101,11 @@ class KMeans
       for j in (0..len-1)
         center[j] = rand(maxBounds[j] - minBounds[j]) + minBounds[j]
       end
-      centroids[i] = center
+      centroids[i] = Centroid.new(i, center)
     end
     return centroids
   end
+
 end
 
 if(__FILE__ == $0)
@@ -68,13 +116,16 @@ if(__FILE__ == $0)
     DataObject.new([4, 5, 10]),
     DataObject.new([7, 8, 9])]
 
-  objects = [DataObject.new([1, 2]),
-    DataObject.new([1, 3]),
-    DataObject.new([1, 3]),
-    DataObject.new([4, 5]),
-    DataObject.new([7, 8])]
+  objects = [DataObject.new([1, 1]),
+    DataObject.new([1, 2]),
+    DataObject.new([2, 1]),
+    DataObject.new([2, 2]),
+    DataObject.new([7, 7]),
+    DataObject.new([7, 8]),
+    DataObject.new([8, 7]),
+    DataObject.new([8, 8])]
 
   kMeans = KMeans.new()
-  kMeans.run(objects, 3)
+  kMeans.run(objects, 2)
 
 end

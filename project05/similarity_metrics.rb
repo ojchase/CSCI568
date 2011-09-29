@@ -53,7 +53,6 @@ def euclidean(object1, object2)
   #normalizing!
   result = 1 / (1 + result.to_f)
 
-  puts "Euclidean distance is #{result}!"
   return result
 end
 
@@ -72,7 +71,6 @@ def smc(object1, object2)
     result = matchCount / denom
   end
   
-  puts "SMC is #{result}!"
   return result
 end
 
@@ -92,8 +90,6 @@ def jaccard(object1, object2)
     end
     result = matchCount / denom
   end
-  
-  puts "Jaccard Similarity is #{result}!"
 return result
 end
 
@@ -106,8 +102,6 @@ def pearson(object1, object2)
     denom = standardDeviation(object1.values) * standardDeviation(object2.values)
     result = numerator / denom
   end
-  
-  puts "Pearson's Correlation Coefficient is #{result}!"
   return result
 end
 
@@ -115,7 +109,6 @@ def cosine(object1, object2)
   numerator = dotProduct(object1.values, object2.values)
   denominator = Math.sqrt(dotProduct(object1.values, object1.values)) * Math.sqrt(dotProduct(object2.values, object2.values))
   result = numerator/denominator
-  puts "Cosine distance is #{result}!"
   return result
 end
 
