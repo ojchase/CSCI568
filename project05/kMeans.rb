@@ -2,6 +2,7 @@ require 'similarity_metrics.rb'
 require 'dataObject.rb'
 
 class KMeans
+  #returns the cumulative SSE from adding each of them together
   def run(objects, k)
     centroids = initCentroids(objects, k)
     #print(centroids)
@@ -20,11 +21,13 @@ class KMeans
 
     end
 
-    showResults(objects, centroids)
-
+    cumulativeSSE = showResults(objects, centroids)
+    return cumulativeSSE
   end
 
+  #returns the from all the clusters sse
   def showResults(objects, centroids)
+    sse = 0
     centroids.each do |centroid|
       puts centroid
       puts "Includes the following points:"
@@ -35,7 +38,9 @@ class KMeans
       end
       puts("SSE: #{sse(objects, centroid)}")
       puts
+      sse = sse + sse(objects, centroid)
     end
+    return sse
   end
 
   def sse(objects, centroid)
@@ -69,6 +74,9 @@ class KMeans
         #puts dimensionSums[i]
         #puts usingCentroid
         dimensionSums[i] = dimensionSums[i] / usingCentroid.to_f
+      end
+      if(usingCentroid == 0) #we'll just move the centroid to the first point - better than having an empty cluster!
+        dimensionSums = objects[0].values
       end
       centroid.setCoordinates(dimensionSums)
       #puts "Centroid #{centroid.getID} moved to #{centroid.getCoordinates}"
@@ -149,7 +157,18 @@ if(__FILE__ == $0)
     DataObject.new([8, 7]),
     DataObject.new([8, 8])]
 
-  kMeans = KMeans.new()
-  kMeans.run(objects, 2)
+  lowestSSE = 100000000
+  for i in (2..10)
+    for j in (1..5) #run five times for each k
+      kMeans = KMeans.new()
+      tempSSE = kMeans.run(objects, i)
+      if(tempSSE < lowestSSE)
+        k = j
+        lowestSSE = tempSSE
+      end
+    end
+  end
+
+  puts "Ideal K is #{k}!"
 
 end
