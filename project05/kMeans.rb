@@ -315,7 +315,7 @@ DataObject.new([6.2,3.4,5.4,2.3]),
 DataObject.new([5.9,3.0,5.1,1.8])]
 
   lowestSSE = 10000000
-  for i in (2..Math.log(objects.length)) #we don't want more than one cluster for every three points!
+  for i in (2..Math.log(objects.length)) #experimentally found to reasonably well at providing a reasonable max k
     cumulativeSSE = 0
     for j in (1..10) #run 10 times for each k
       kMeans = KMeans.new()
