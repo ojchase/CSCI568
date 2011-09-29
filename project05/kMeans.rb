@@ -32,6 +32,7 @@ class KMeans
     minBounds = Array.new(len)
     maxBounds = Array.new(len)
 
+    #Calculate the minimum and maximum allowable value for each attribute
     objects.each do |obj|
       i = 0
       obj.values.each do |value|
@@ -44,8 +45,8 @@ class KMeans
         i = i + 1
       end
     end
-    puts minBounds
-    puts maxBounds
+    
+    #Randomly pick centroids in that range!
     centroids = Array.new(k)
     r = Random.new
     for i in (0..k-1)
