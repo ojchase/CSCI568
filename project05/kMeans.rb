@@ -7,7 +7,7 @@ class KMeans
     puts "#{k} centroids"
 
     centroids = initCentroids(objects, k)
-    puts(centroids)
+    print(centroids)
 
     i = 0
 =begin
@@ -46,8 +46,16 @@ class KMeans
     end
     puts minBounds
     puts maxBounds
-
-    
+    centroids = Array.new(k)
+    r = Random.new
+    for i in (0..k-1)
+      center = Array.new(len)
+      for j in (0..len-1)
+        center[j] = rand(maxBounds[j] - minBounds[j]) + minBounds[j]
+      end
+      centroids[i] = center
+    end
+    return centroids
   end
 end
 
@@ -58,6 +66,12 @@ if(__FILE__ == $0)
     DataObject.new([1, 3, 4]),
     DataObject.new([4, 5, 10]),
     DataObject.new([7, 8, 9])]
+
+  objects = [DataObject.new([1, 2]),
+    DataObject.new([1, 3]),
+    DataObject.new([1, 3]),
+    DataObject.new([4, 5]),
+    DataObject.new([7, 8])]
 
   kMeans = KMeans.new()
   kMeans.run(objects, 3)
