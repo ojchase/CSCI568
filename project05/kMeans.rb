@@ -25,22 +25,22 @@ class KMeans
 
   def recalculateCentroids(objects, centroids)
     len = objects[0].values.length
-    dimensionSums = Array.new(len)
-    usingCentroid = 0
     centroids.each do |centroid|
+      dimensionSums = Array.new(len)
+      dimensionSums.fill(0)
+      usingCentroid = 0
       puts "Centroid #{centroid.getID} started at #{centroid.getCoordinates}"
       objects.each do |obj|
-        puts obj.getCentroid
-        puts centroid
-        puts(obj.getCentroid == centroid)
         if(obj.getCentroid == centroid)
+          puts "   #{obj} is on this centroid!"
           for i in (0..len-1)
             dimensionSums[i] = dimensionSums[i] + obj.values[i]
           end
           usingCentroid = usingCentroid + 1
         end
       end
-      for i in (0..dimensionSums.length)
+      print dimensionSums
+      for i in (0..dimensionSums.length - 1)
         puts dimensionSums[i]
         puts usingCentroid
         dimensionSums[i] = dimensionSums[i] / usingCentroid.to_f

@@ -4,7 +4,7 @@ class DataObject<ComparisonObject
     if(@centroid.nil?)
       return "NONE"
     end
-    return "#{@centroid.getID} at #{@centroid.getCoordinates}"
+    return @centroid
   end
   def setCentroid(center)
     @centroid = center
