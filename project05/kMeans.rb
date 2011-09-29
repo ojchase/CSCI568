@@ -29,19 +29,25 @@ class KMeans
         return "Clustering can't continue as objects have a different number of attributes!"
       end
     end
-    bounds = Array.new(len)
+    minBounds = Array.new(len)
+    maxBounds = Array.new(len)
 
     objects.each do |obj|
-      j = 0
-      obj.values.each do |val|
-        value = val
-        if(bounds[j].nil? || bounds[j] < value)
-          bounds[j] = value
+      i = 0
+      obj.values.each do |value|
+        if(minBounds[i].nil? || minBounds[i] > value)
+          minBounds[i] = value
         end
-        j = j + 1
+        if(maxBounds[i].nil? || maxBounds[i] < value)
+          maxBounds[i] = value
+        end
+        i = i + 1
       end
     end
-    puts bounds
+    puts minBounds
+    puts maxBounds
+
+    
   end
 end
 
