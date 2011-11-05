@@ -43,5 +43,10 @@ public class Axon
   {
     this.weight *= weight;
   }
+  
+  public void signal()
+  {
+    target.receiveSignal(weight);
+  }
 
 }
