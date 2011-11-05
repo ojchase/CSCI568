@@ -7,7 +7,8 @@ public class Neuron
   private List<Axon> sourceAxons; // These send signals to the neuron
   private List<Axon> targetAxons; // This neuron sends its signals via these axons
   private final double threshold;
-  private double accumulatedSignal = 0;
+  private double accumulatedSignal = 0; // Total signal received so far from its source neurons
+  private boolean fired = false; // We don't want a neuron to fire twice
   
   public Neuron(double threshold)
   {
@@ -18,14 +19,14 @@ public class Neuron
   {
     for(Axon axon : targetAxons)
     {
-      axon.signal();
+      axon.sendSignal();
     }
   }
   
   public void receiveSignal(double signalStrength)
   {
     accumulatedSignal += signalStrength;
-    if(accumulatedSignal >= threshold)
+    if(accumulatedSignal >= threshold && !fired)
       fire();
   }
 }
