@@ -11,7 +11,7 @@ public class Axon
     source.addTargetAxon(this);
     if(target != null)
       target.addSourceAxon(this);
-    this.weight = .15;//Math.random() - Math.random(); // gives a range of -1 to +1
+    this.weight = Math.random() - Math.random(); // gives a range of -1 to +1
   }
 
   public Neuron getSource()
@@ -54,7 +54,7 @@ public class Axon
   {
     if(target == null)
     {
-      System.out.println("Output value: " + (sendSignal ? weight : 0));
+      System.out.println(source + " output value: " + (sendSignal ? weight : 0));
       return;
     }
     if(sendSignal)

@@ -7,12 +7,13 @@ public class Neuron
   // It just sends signals up and down axons to whoever is listening.
   private List<Axon> sourceAxons = new ArrayList<Axon>(); // These send signals to the neuron
   private List<Axon> targetAxons = new ArrayList<Axon>(); // This neuron sends its signals via these axons
-  private final double threshold = 1; // arbitrarily set
+  private final double threshold = 0; // arbitrarily set
   private double accumulatedSignal = 0; // Total signal received so far from its source neurons
+  private final String id;
   
-  public Neuron()
+  public Neuron(String id)
   {
-    
+    this.id = id;
   }
   
   public List<Neuron> fire()
@@ -24,14 +25,9 @@ public class Neuron
         axon.sendSignal(true);
       else
         axon.sendSignal(false);
-      affectedNeurons.add(axon.getTarget());
-    }
-    if(affectedNeurons.size() == 0) // output neuron
-    {
-      for(Axon axon : targetAxons)
-      {
-        System.out.println("Output value: " + axon.getWeight());
-      }
+      Neuron axonTarget = axon.getTarget();
+      if(axonTarget != null)
+        affectedNeurons.add(axonTarget);
     }
     return affectedNeurons;
   }
@@ -49,5 +45,10 @@ public class Neuron
   public void addTargetAxon(Axon axon)
   {
     targetAxons.add(axon);
+  }
+  
+  public String toString()
+  {
+    return id;
   }
 }
