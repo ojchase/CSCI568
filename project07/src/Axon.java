@@ -50,17 +50,14 @@ public class Axon
    * A signal gets "sent" either way, but it will be a 0 signal if sendSignal is false.
    * @param sendSignal
    */
-  public void sendSignal(boolean sendSignal)
+  public void sendSignal(double signal)
   {
     if(target == null)
     {
-      System.out.println(source + " output value: " + (sendSignal ? weight : 0));
+      System.out.println(source + " output value: " + (signal * weight));
       return;
     }
-    if(sendSignal)
-      target.receiveSignal(weight);
-    else
-      target.receiveSignal(0);
+    target.receiveSignal(signal*weight);
   }
 
 }
