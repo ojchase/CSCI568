@@ -10,7 +10,6 @@ public class Network
   private List<Neuron> hiddenNeurons = Arrays.asList(new Neuron("hidden1"), new Neuron("hidden2"));
   private List<Neuron> outputNeurons = Arrays.asList(new Neuron("output1"), new Neuron("output2"), new Neuron("output3"));
 
-  
   public Network()
   {    
     for(Neuron n : inputNeurons)
@@ -40,13 +39,10 @@ public class Network
     return inputNeurons;
   }
   
-  public static void main(String[] args)
+  public void train()
   {
-    Network ann = new Network();
-    List<Neuron> inputNeurons = ann.getInputNeurons();
     boolean done = false;
     Queue<Neuron> neuronQueue = new LinkedList<Neuron>();
-    
     while(!done)
     {
       inputNeurons.get(0).receiveSignal(1);
@@ -67,7 +63,11 @@ public class Network
         }
       }
     }
-    
-    
+  }
+  
+  public static void main(String[] args)
+  {
+    Network ann = new Network();
+    ann.train();    
   }
 }

@@ -45,11 +45,6 @@ public class Axon
       this.weight = -1;
   }
   
-  /**
-   * Sends either a full or empty signal to the target neuron.
-   * A signal gets "sent" either way, but it will be a 0 signal if sendSignal is false.
-   * @param sendSignal
-   */
   public void sendSignal(double signal)
   {
     if(target == null)
