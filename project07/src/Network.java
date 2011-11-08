@@ -6,9 +6,9 @@ import java.util.Queue;
 
 public class Network
 {
-  private List<Neuron> inputNeurons = Arrays.asList(new Neuron("input1"), new Neuron("input2"), new Neuron("input3"));
-  private List<Neuron> hiddenNeurons = Arrays.asList(new Neuron("hidden1"), new Neuron("hidden2"));
-  private List<Neuron> outputNeurons = Arrays.asList(new Neuron("output1"), new Neuron("output2"), new Neuron("output3"));
+  private List<? extends Neuron> inputNeurons = Arrays.asList(new Neuron("input1"), new Neuron("input2"), new Neuron("input3"));
+  private List<? extends Neuron> hiddenNeurons = Arrays.asList(new Neuron("hidden1"), new Neuron("hidden2"));
+  private List<? extends Neuron> outputNeurons = Arrays.asList(new OutputNeuron("output1"), new OutputNeuron("output2"), new OutputNeuron("output3"));
 
   public Network()
   {    
@@ -34,7 +34,7 @@ public class Network
     }
   }
 
-  public List<Neuron> getInputNeurons()
+  public List<? extends Neuron> getInputNeurons()
   {
     return inputNeurons;
   }
@@ -53,7 +53,7 @@ public class Network
       while(!neuronQueue.isEmpty())
       {
         Neuron firingNeuron = neuronQueue.remove();
-        List<Neuron> newNeuronsToFire = firingNeuron.fire();
+        List<? extends Neuron> newNeuronsToFire = firingNeuron.fire();
         for(Neuron n : newNeuronsToFire)
         {
           if(!neuronQueue.contains(n))

@@ -47,11 +47,6 @@ public class Axon
   
   public void sendSignal(double signal)
   {
-    if(target == null)
-    {
-      System.out.println(source + " output value: " + (signal * weight));
-      return;
-    }
     target.receiveSignal(signal*weight);
   }
 
