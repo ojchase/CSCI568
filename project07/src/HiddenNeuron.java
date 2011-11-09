@@ -37,7 +37,7 @@ public class HiddenNeuron extends Neuron
     double result = 0;
     for(Axon a : targetAxons)
     {
-      result += (a.getTarget().getOutputErrorGradient() * errorCausedToTarget(a));
+      result += (a.getTarget().getOutputErrorGradient() * errorCausedByInput(a));
     }
     return result;
   }

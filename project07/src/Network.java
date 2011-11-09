@@ -40,7 +40,7 @@ public class Network
     return inputNeurons;
   }
   
-  public void train()
+  public void train() throws InterruptedException
   {
     boolean done = false;
     Queue<Neuron> neuronQueue = new LinkedList<Neuron>();
@@ -71,6 +71,7 @@ public class Network
       }
       if(!done)
         backPropogate();
+      //Thread.sleep(400);
     }
   }
   
@@ -92,7 +93,7 @@ public class Network
     }
   }
 
-  public static void main(String[] args)
+  public static void main(String[] args) throws InterruptedException
   {
     Network ann = new Network();
     ann.train();    

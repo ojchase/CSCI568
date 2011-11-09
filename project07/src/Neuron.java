@@ -53,24 +53,26 @@ public abstract class Neuron
   }
   
   /**
-   * Returns the error gradient with respect to the neuron's output (e.g. dE/dx)
+   * Returns the error gradient with respect to the neuron's output (e.g. dE/dx).
+   * It's conceptually the effect on the overall error of a small change in this neuron's value.
    * @return
    */
   protected abstract double getOutputErrorGradient();
 
   /**
    * Returns the amount of error that the value of this neuron causes to a target neuron
+   * It's conceptually the effect on the neuron's result of a small change in the input.
    * e.g. dy_j/dx_i
    * @param a
    * @return
    */
-  protected final double errorCausedToTarget(Axon a)
+  protected final double errorCausedByInput(Axon a)
   {
     if(!(a.getSource() == this))
       return 0;
-    Neuron target = a.getTarget();
-    double targetOutput = target.getOutputValue();
-    return targetOutput * (1 - targetOutput) * a.getWeight();
+    Neuron source = a.getSource();
+    double input = source.getOutputValue();
+    return input * (1 - input) * a.getWeight();
   }
 
   public final List<Neuron> backPropogate()
@@ -78,7 +80,8 @@ public abstract class Neuron
     List<Neuron> affectedNeurons = new ArrayList<Neuron>();
     for(Axon axon : sourceAxons)
     {
-      axon.setWeight(3); // TODO calculate the right value
+      double adjustment = errorCausedByInput(axon);
+      axon.setWeight(axon.getWeight() + adjustment); // TODO calculate the right value
       Neuron axonSource = axon.getSource();
       affectedNeurons.add(axonSource);
     }
