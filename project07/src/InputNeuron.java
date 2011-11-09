@@ -10,13 +10,13 @@ public class InputNeuron extends Neuron
   }
   
   @Override
-  public List<? extends Neuron> fire()
+  public List<Neuron> fire()
   {
-    List<HiddenNeuron> affectedNeurons = new ArrayList<HiddenNeuron>();
+    List<Neuron> affectedNeurons = new ArrayList<Neuron>();
     for(Axon axon : targetAxons)
     {
       axon.sendSignal(outputValue);
-      HiddenNeuron axonTarget = axon.getTarget();
+      Neuron axonTarget = axon.getTarget();
       if(axonTarget != null)
         affectedNeurons.add(axonTarget);
     }
@@ -26,13 +26,7 @@ public class InputNeuron extends Neuron
   @Override
   public double getOutputErrorGradient()
   {
-    // TODO Auto-generated method stub
+    // never needed
     return 0;
-  }
-
-  @Override
-  public List<? extends Neuron> backPropogate()
-  {
-    return new ArrayList<Neuron>();
   }
 }

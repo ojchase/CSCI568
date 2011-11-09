@@ -15,6 +15,11 @@ public class OutputNeuron extends Neuron
   {
     return expectedValue;
   }
+
+  public double getError()
+  {
+    return Math.pow(outputValue - expectedValue, 2);
+  }
   
   @Override
   public List<Neuron> fire()

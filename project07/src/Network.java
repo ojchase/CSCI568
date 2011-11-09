@@ -81,7 +81,7 @@ public class Network
     while(!neuronQueue.isEmpty())
     {
       Neuron backPropogatingNeuron = neuronQueue.remove();
-      List<? extends Neuron> newNeuronsToBackPropogate = backPropogatingNeuron.backPropogate();
+      List<Neuron> newNeuronsToBackPropogate = backPropogatingNeuron.backPropogate();
       for(Neuron n : newNeuronsToBackPropogate)
       {
         if(!neuronQueue.contains(n))

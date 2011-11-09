@@ -22,17 +22,17 @@ public abstract class Neuron
     accumulatedSignal += signalStrength;
   }
 
-  public final void addSourceAxon(Axon axon)
+  protected final void addSourceAxon(Axon axon)
   {
     sourceAxons.add(axon);
   }
 
-  public final void addTargetAxon(Axon axon)
+  protected final void addTargetAxon(Axon axon)
   {
     targetAxons.add(axon);
   }
   
-  public final double getOutputValue()
+  protected final double getOutputValue()
   {
     if(outputValue < 0)
       outputValue = calculateOutput(accumulatedSignal);
@@ -44,7 +44,7 @@ public abstract class Neuron
     return 1.0 / (1 + Math.pow(Math.E, -1*accumulatedSignal));
   }
 
-  public abstract List<? extends Neuron> fire();
+  public abstract List<Neuron> fire();
   
   @Override
   public final String toString()
@@ -56,7 +56,7 @@ public abstract class Neuron
    * Returns the error gradient with respect to the neuron's output (e.g. dE/dx)
    * @return
    */
-  public abstract double getOutputErrorGradient();
+  protected abstract double getOutputErrorGradient();
 
   /**
    * Returns the amount of error that the value of this neuron causes to a target neuron
@@ -64,14 +64,24 @@ public abstract class Neuron
    * @param a
    * @return
    */
-  private double errorCausedToTarget(Axon a)
+  protected final double errorCausedToTarget(Axon a)
   {
     if(!(a.getSource() == this))
       return 0;
-    HiddenNeuron target = a.getTarget();
+    Neuron target = a.getTarget();
     double targetOutput = target.getOutputValue();
     return targetOutput * (1 - targetOutput) * a.getWeight();
   }
 
-  public abstract List<? extends Neuron> backPropogate();
+  public final List<Neuron> backPropogate()
+  {
+    List<Neuron> affectedNeurons = new ArrayList<Neuron>();
+    for(Axon axon : sourceAxons)
+    {
+      axon.setWeight(3); // TODO calculate the right value
+      Neuron axonSource = axon.getSource();
+      affectedNeurons.add(axonSource);
+    }
+    return affectedNeurons;
+  }
 }
