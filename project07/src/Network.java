@@ -71,7 +71,7 @@ public class Network
       }
       if(!done)
         backPropogate();
-      //Thread.sleep(400);
+      //Thread.sleep(2000);
     }
   }
   

@@ -68,20 +68,33 @@ public abstract class Neuron
    */
   protected final double errorCausedByInput(Axon a)
   {
-    if(!(a.getSource() == this))
-      return 0;
     Neuron source = a.getSource();
     double input = source.getOutputValue();
+    /*if(source.id.equals("input1"))
+    {
+      System.out.println("input1 is outputting: " + input);
+    }*/
     return input * (1 - input) * a.getWeight();
   }
 
   public final List<Neuron> backPropogate()
   {
+    //System.out.println(this);
     List<Neuron> affectedNeurons = new ArrayList<Neuron>();
     for(Axon axon : sourceAxons)
     {
-      double adjustment = errorCausedByInput(axon);
-      axon.setWeight(axon.getWeight() + adjustment); // TODO calculate the right value
+      //System.out.println("Axon connecting neurons: " + axon.getSource() + axon.getTarget());
+      //System.out.println("  Old weight: " + axon.getWeight());
+      double adjustment = -0.5 * errorCausedByInput(axon);
+      axon.setWeight(axon.getWeight() + adjustment);
+      //System.out.println("  New weight: " + axon.getWeight());
+      try{
+        //Thread.sleep(2000);
+      }
+      catch(Exception e)
+      {
+        
+      }
       Neuron axonSource = axon.getSource();
       affectedNeurons.add(axonSource);
     }

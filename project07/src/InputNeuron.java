@@ -6,6 +6,11 @@ public class InputNeuron extends Neuron
   public InputNeuron(String id, double initialValue)
   {
     super(id);
+    final double EPSILON = 0.001;
+    if(initialValue <= -1)
+      initialValue = -1 + EPSILON;
+    if(initialValue >= 1)
+      initialValue = 1 - EPSILON;
     this.outputValue = initialValue;
   }
   
