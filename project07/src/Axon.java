@@ -1,10 +1,10 @@
 public class Axon
 {
-  private final HiddenNeuron source;
-  private final HiddenNeuron target;
+  private final Neuron source;
+  private final Neuron target;
   private double weight;
 
-  public Axon(HiddenNeuron source, HiddenNeuron target)
+  public Axon(Neuron source, Neuron target)
   {
     this.source = source;
     this.target = target;
@@ -14,12 +14,12 @@ public class Axon
     this.weight = Math.random() - Math.random(); // gives a range of -1 to +1
   }
 
-  public HiddenNeuron getSource()
+  public Neuron getSource()
   {
     return source;
   }
 
-  public HiddenNeuron getTarget()
+  public Neuron getTarget()
   {
     return target;
   }

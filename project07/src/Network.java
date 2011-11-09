@@ -6,36 +6,36 @@ import java.util.Queue;
 
 public class Network
 {
-  private List<HiddenNeuron> inputNeurons = Arrays.asList(new HiddenNeuron("input1"), new HiddenNeuron("input2"), new HiddenNeuron("input3"));
+  private List<InputNeuron> inputNeurons = Arrays.asList(new InputNeuron("input1", 1), new InputNeuron("input2", 0.25), new InputNeuron("input3", -0.5));
   private List<HiddenNeuron> hiddenNeurons = Arrays.asList(new HiddenNeuron("hidden1"), new HiddenNeuron("hidden2"));
   private List<OutputNeuron> outputNeurons = Arrays.asList(new OutputNeuron("output1", 1), new OutputNeuron("output2", -1), new OutputNeuron("output3", 0));
 
   public Network()
   {    
-    for(HiddenNeuron n : inputNeurons)
+    for(Neuron n : inputNeurons)
     {
-      for(HiddenNeuron m : hiddenNeurons)
+      for(Neuron m : hiddenNeurons)
       {
         new Axon(n, m);
       }
     }
 
-    for(HiddenNeuron n : hiddenNeurons)
+    for(Neuron n : hiddenNeurons)
     {
-      for(HiddenNeuron m : outputNeurons)
+      for(Neuron m : outputNeurons)
       {
         new Axon(n, m);
       }
     }
 
-    for(HiddenNeuron n : outputNeurons)
+    for(Neuron n : outputNeurons)
     {
         Axon a = new Axon(n, null);
         a.setWeight(1);
     }
   }
 
-  public List<? extends HiddenNeuron> getInputNeurons()
+  public List<? extends Neuron> getInputNeurons()
   {
     return inputNeurons;
   }
@@ -43,19 +43,15 @@ public class Network
   public void train()
   {
     boolean done = false;
-    Queue<HiddenNeuron> neuronQueue = new LinkedList<HiddenNeuron>();
+    Queue<Neuron> neuronQueue = new LinkedList<Neuron>();
     while(!done)
     {
-      inputNeurons.get(0).receiveSignal(1);
-      inputNeurons.get(1).receiveSignal(0.25);
-      inputNeurons.get(2).receiveSignal(-0.5);
-      
       neuronQueue.addAll(inputNeurons);
       while(!neuronQueue.isEmpty())
       {
-        HiddenNeuron firingNeuron = neuronQueue.remove();
-        List<? extends HiddenNeuron> newNeuronsToFire = firingNeuron.fire();
-        for(HiddenNeuron n : newNeuronsToFire)
+        Neuron firingNeuron = neuronQueue.remove();
+        List<? extends Neuron> newNeuronsToFire = firingNeuron.fire();
+        for(Neuron n : newNeuronsToFire)
         {
           if(!neuronQueue.contains(n))
           {
@@ -67,7 +63,7 @@ public class Network
       for(OutputNeuron outputNeuron : outputNeurons)
       {
         //System.out.println(outputNeuron + ": " + outputNeuron.outputValue);
-        if(outputNeuron.getError() > 0.01*outputNeuron.getExpectedValue())
+        if(outputNeuron.getError() > 0.001*outputNeuron.getExpectedValue())
         {
           done = false;
           break;
@@ -80,13 +76,13 @@ public class Network
   
   private void backPropogate()
   {
-    Queue<HiddenNeuron> neuronQueue = new LinkedList<HiddenNeuron>();
+    Queue<Neuron> neuronQueue = new LinkedList<Neuron>();
     neuronQueue.addAll(outputNeurons);
     while(!neuronQueue.isEmpty())
     {
-      HiddenNeuron backPropogatingNeuron = neuronQueue.remove();
-      List<? extends HiddenNeuron> newNeuronsToBackPropogate = backPropogatingNeuron.backPropogate();
-      for(HiddenNeuron n : newNeuronsToBackPropogate)
+      Neuron backPropogatingNeuron = neuronQueue.remove();
+      List<? extends Neuron> newNeuronsToBackPropogate = backPropogatingNeuron.backPropogate();
+      for(Neuron n : newNeuronsToBackPropogate)
       {
         if(!neuronQueue.contains(n))
         {

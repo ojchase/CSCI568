@@ -1,41 +1,38 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class InputNeuron extends HiddenNeuron
+public class InputNeuron extends Neuron
 {
-  private final double expectedValue;
-  public InputNeuron(String id, double expectedValue)
+  public InputNeuron(String id, double initialValue)
   {
     super(id);
-    this.expectedValue = expectedValue;
+    this.outputValue = initialValue;
   }
   
   @Override
-  public List<InputNeuron> fire()
+  public List<? extends Neuron> fire()
   {
-    outputValue = calculateOutput(accumulatedSignal);
-    
-    System.out.println(id + ": " + outputValue);
-    return new ArrayList<InputNeuron>();
+    List<HiddenNeuron> affectedNeurons = new ArrayList<HiddenNeuron>();
+    for(Axon axon : targetAxons)
+    {
+      axon.sendSignal(outputValue);
+      HiddenNeuron axonTarget = axon.getTarget();
+      if(axonTarget != null)
+        affectedNeurons.add(axonTarget);
+    }
+    return affectedNeurons;
   }
 
-  public double getExpectedValue()
-  {
-    return expectedValue;
-  }
-  
-  private final double calculateOutputErrorGradient()
-  {
-    return 2 * (outputValue - expectedValue);
-  }
-  
   @Override
   public double getOutputErrorGradient()
   {
-    if(outputErrorGradient < 0)
-    {
-      outputErrorGradient = calculateOutputErrorGradient();
-    }
-    return outputErrorGradient;
+    // TODO Auto-generated method stub
+    return 0;
+  }
+
+  @Override
+  public List<? extends Neuron> backPropogate()
+  {
+    return new ArrayList<Neuron>();
   }
 }

@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class HiddenNeuron
+public class HiddenNeuron extends Neuron
 {
   // The neuron shouldn't actually need to know who it's connected to.
   // It just sends signals up and down axons to whoever is listening.
@@ -14,30 +14,11 @@ public class HiddenNeuron
   
   public HiddenNeuron(String id)
   {
-    this.id = id;
-  }
-  
-  public final void receiveSignal(double signalStrength)
-  {
-    accumulatedSignal += signalStrength;
+    super(id);
   }
 
-  public final void addSourceAxon(Axon axon)
-  {
-    sourceAxons.add(axon);
-  }
-
-  public final void addTargetAxon(Axon axon)
-  {
-    targetAxons.add(axon);
-  }
-  
-  public double getOutputValue()
-  {
-    return outputValue;
-  }
-
-  public List<? extends HiddenNeuron> fire()
+  @Override
+  public List<? extends Neuron> fire()
   {
     outputValue = calculateOutput(accumulatedSignal);
     
@@ -57,11 +38,7 @@ public class HiddenNeuron
     return 1.0 / (1 + Math.pow(Math.E, -1*accumulatedSignal));
   }
   
-  public final String toString()
-  {
-    return id;
-  }
-  
+  @Override
   public double getOutputErrorGradient()
   {
     if(outputErrorGradient < 0)
@@ -96,9 +73,9 @@ public class HiddenNeuron
     return targetOutput * (1 - targetOutput) * a.getWeight();
   }
 
-  public final List<? extends HiddenNeuron> backPropogate()
+  public final List<? extends Neuron> backPropogate()
   {
-    List<HiddenNeuron> affectedNeurons = new ArrayList<HiddenNeuron>();
+    List<Neuron> affectedNeurons = new ArrayList<HiddenNeuron>();
     for(Axon axon : sourceAxons)
     {
       axon.setWeight(newWeight);
