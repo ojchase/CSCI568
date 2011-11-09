@@ -1,10 +1,10 @@
 public class Axon
 {
-  private final Neuron source;
-  private final Neuron target;
+  private final HiddenNeuron source;
+  private final HiddenNeuron target;
   private double weight;
 
-  public Axon(Neuron source, Neuron target)
+  public Axon(HiddenNeuron source, HiddenNeuron target)
   {
     this.source = source;
     this.target = target;
@@ -14,12 +14,12 @@ public class Axon
     this.weight = Math.random() - Math.random(); // gives a range of -1 to +1
   }
 
-  public Neuron getSource()
+  public HiddenNeuron getSource()
   {
     return source;
   }
 
-  public Neuron getTarget()
+  public HiddenNeuron getTarget()
   {
     return target;
   }
@@ -30,7 +30,7 @@ public class Axon
   }
 
   // this may or may not get used; I haven't decided how I want to update weights yet
-  private void setWeight(double weight)
+  public void setWeight(double weight)
   {
     this.weight = weight;
   }

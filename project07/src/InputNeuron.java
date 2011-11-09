@@ -1,22 +1,22 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class OutputNeuron extends HiddenNeuron
+public class InputNeuron extends HiddenNeuron
 {
   private final double expectedValue;
-  public OutputNeuron(String id, double expectedValue)
+  public InputNeuron(String id, double expectedValue)
   {
     super(id);
     this.expectedValue = expectedValue;
   }
   
   @Override
-  public List<OutputNeuron> fire()
+  public List<InputNeuron> fire()
   {
     outputValue = calculateOutput(accumulatedSignal);
     
     System.out.println(id + ": " + outputValue);
-    return new ArrayList<OutputNeuron>();
+    return new ArrayList<InputNeuron>();
   }
 
   public double getExpectedValue()
