@@ -32,9 +32,9 @@ public class InputNeuron extends Neuron
   }
 
   @Override
-  public double getOutputErrorGradient()
+  protected double overallErrorCausedByOutput() 
   {
     // never needed
-    return 0;
+    throw new IllegalStateException("Input neurons shouldn't need to evaluate the overall error their output causes!");
   }
 }

@@ -11,6 +11,9 @@ public class HiddenNeuron extends Neuron
   @Override
   public List<Neuron> fire()
   {
+    // Clear overall error contribution
+    overallErrorContribution = -1;
+    
     Network.debug(this + " is firing");
     outputValue = calculateOutput(accumulatedSignal);
     
@@ -29,20 +32,16 @@ public class HiddenNeuron extends Neuron
   }
   
   @Override
-  public double getOutputErrorGradient()
+  public double overallErrorCausedByOutput()
   {
-    if(outputErrorGradient < 0)
-      outputErrorGradient = calculateOutputErrorGradient();
-    return outputErrorGradient;
-  }
-
-  private double calculateOutputErrorGradient()
-  {
-    double result = 0;
-    for(Axon a : targetAxons)
+    if(overallErrorContribution < 0)
     {
-      result += (a.getTarget().getOutputErrorGradient() * errorCausedByInput(a));
+      overallErrorContribution = 0;
+      for(Axon a : targetAxons)
+      {
+        overallErrorContribution += (a.getTarget().overallErrorCausedByOutput() * a.getTarget().errorInOutputCausedByInput(a));
+      }
     }
-    return result;
+    return overallErrorContribution;
   }
 }

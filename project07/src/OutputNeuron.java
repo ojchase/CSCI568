@@ -24,25 +24,25 @@ public class OutputNeuron extends Neuron
   @Override
   public List<Neuron> fire()
   {
+    // Clear overall error contribution
+    overallErrorContribution = -1;
+    
     Network.debug(this + " is firing");
     outputValue = calculateOutput(accumulatedSignal);
+    Network.debug("  " + this + " Accumulated Signal: " + accumulatedSignal);
+    Network.debug("  " + this + " Output: " + outputValue);
     
     System.out.println(id + " result: " + outputValue);
     return new ArrayList<Neuron>();
   }
   
-  private final double calculateOutputErrorGradient()
-  {
-    return 2 * (outputValue - expectedValue);
-  }
-  
   @Override
-  public final double getOutputErrorGradient()
+  public final double overallErrorCausedByOutput()
   {
-    if(outputErrorGradient < 0)
+    if(overallErrorContribution < 0)
     {
-      outputErrorGradient = calculateOutputErrorGradient();
+      overallErrorContribution = 2 * (outputValue - expectedValue);
     }
-    return outputErrorGradient;
+    return overallErrorContribution;
   }
 }

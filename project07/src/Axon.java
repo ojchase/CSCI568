@@ -30,6 +30,7 @@ public class Axon
     return weight;
   }
 
+  @Deprecated
   public void setWeight(double weight)
   {
     this.weight = weight;
@@ -41,6 +42,27 @@ public class Axon
     Network.debug("    Weight: " + weight);
     Network.debug("    " + source + "->" + target + " sending " + signal*weight);
     target.receiveSignal(signal*weight);
+  }
+  
+  /*public double adjustWeight()
+  {
+    Network.debug("  Evaluating axon to " + source);
+    Network.debug("    Old weight: " + weight);
+    Network.debug("    Error caused by this axon's weight: " + target.overallErrorCausedByWeight(this)); // TODO bad design/
+    double adjustment = -0.5 * target.overallErrorCausedByWeight(this);
+    Network.debug("    Adjusting by " + adjustment);
+    Network.debug("    New weight: " + weight);
+    return weight + adjustment;
+  }  */
+  public void adjustWeight()
+  {
+    Network.debug("  Evaluating axon to " + source);
+    Network.debug("    Old weight: " + weight);
+    Network.debug("    Error caused by this axon's weight: " + target.overallErrorCausedByWeight(this)); // TODO bad design/
+    double adjustment = -0.5 * target.overallErrorCausedByWeight(this);
+    Network.debug("    Adjusting by " + adjustment);
+    weight += adjustment;
+    Network.debug("    New weight: " + weight);
   }
 
 }

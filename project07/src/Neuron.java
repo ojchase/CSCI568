@@ -9,7 +9,7 @@ public abstract class Neuron
   protected List<Axon> targetAxons = new ArrayList<Axon>(); // This neuron sends its signals via these axons
   protected double accumulatedSignal = 0; // Total signal received so far from its source neurons
   protected final String id;
-  protected double outputErrorGradient = -1;
+  protected double overallErrorContribution = -1;
   protected double outputValue = -1;
   
   public Neuron(String id)
@@ -44,7 +44,7 @@ public abstract class Neuron
   
   protected final double calculateOutput(double accumulatedSignal)
   {
-    return 1.0 / (1 + Math.pow(Math.E, -1*accumulatedSignal));
+    return 2*(1.0 / (1 + Math.pow(Math.E, -1*accumulatedSignal))) - 1;
   }
 
   public abstract List<Neuron> fire();
@@ -57,40 +57,53 @@ public abstract class Neuron
   
   /**
    * Returns the error gradient with respect to the neuron's output (e.g. dE/dx).
-   * It's conceptually the effect on the overall error of a small change in this neuron's value.
+   * It's conceptually the effect on the overall error of a small change in this neuron's output value.
+   * This either comes recursively from lower layers or as a function of the output node's expected output.
    * @return
    */
-  protected abstract double getOutputErrorGradient();
+  protected abstract double overallErrorCausedByOutput();
 
   /**
-   * Returns the amount of error that the value of this neuron causes to a target neuron
-   * It's conceptually the effect on the neuron's result of a small change in the input.
+   * Returns the amount of error that the incoming value causes to the output
+   * It's conceptually the effect on the neuron's output of a small change in the input.
    * e.g. dy_j/dx_i
    * @param a
    * @return
    */
-  protected final double errorCausedByInput(Axon a)
+  protected final double errorInOutputCausedByInput(Axon a)
   {
-    Neuron source = a.getSource();
-    double input = source.getOutputValue();
-    return input * (1 - input) * a.getWeight();
+    return outputValue * (1 - outputValue) * a.getWeight();
   }
-
+  protected final double errorInOutputCausedByWeight(Axon a)
+  {
+    return outputValue * (1 - outputValue) * a.getSource().getOutputValue();
+  }
+  
+  protected final double overallErrorCausedByWeight(Axon a)
+  {
+    if(a.getTarget() != this)
+    {
+      Network.debug("EEK!!!" + "  We're on " + this + " and the axon connects " + a.getSource() + " and " + a.getTarget());
+      throw new IllegalStateException();
+      //return 0;
+    }
+    Network.debug(a.getSource() + "->" + a.getTarget() + ": " + overallErrorCausedByOutput());
+    Network.debug(a.getSource() + "->" + a.getTarget() + ": " + errorInOutputCausedByWeight(a));
+    return overallErrorCausedByOutput() * errorInOutputCausedByWeight(a);
+  }
+  
   public final List<Neuron> backPropogate()
   {
+    // Reset signal accumulation
+    accumulatedSignal = 0;
+    
     Network.debug(this + " is backpropogating");
     List<Neuron> affectedNeurons = new ArrayList<Neuron>();
     for(Axon axon : sourceAxons)
     {
-      Network.debug("  Evaluating axon to " + axon.getSource());
-      Network.debug("    Old weight: " + axon.getWeight());
-      Network.debug("    Error caused by this axon's output: " + errorCausedByInput(axon));
-      double adjustment = -0.5 * errorCausedByInput(axon);
-      Network.debug("    Adjusting by " + adjustment);
-      axon.setWeight(axon.getWeight() + adjustment);
-      Network.debug("    New weight: " + axon.getWeight());
-      Neuron axonSource = axon.getSource();
-      affectedNeurons.add(axonSource);
+      Network.debug("Axon connects " + axon.getSource() + " and " + axon.getTarget());
+      axon.adjustWeight();
+      affectedNeurons.add(axon.getSource());
     }
     return affectedNeurons;
   }
