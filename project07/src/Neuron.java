@@ -82,7 +82,7 @@ public abstract class Neuron
     List<Neuron> affectedNeurons = new ArrayList<Neuron>();
     for(Axon axon : sourceAxons)
     {
-      Network.debug("  Evaluating axon to " + axon.getTarget());
+      Network.debug("  Evaluating axon to " + axon.getSource());
       Network.debug("    Old weight: " + axon.getWeight());
       Network.debug("    Error caused by this axon's output: " + errorCausedByInput(axon));
       double adjustment = -0.5 * errorCausedByInput(axon);
