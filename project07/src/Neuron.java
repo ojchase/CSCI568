@@ -19,7 +19,10 @@ public abstract class Neuron
   
   public final void receiveSignal(double signalStrength)
   {
+    Network.debug("    " + this + " receiving signal " + signalStrength);
+    Network.debug("      " + this + ": Old accumulated signal: " + accumulatedSignal);
     accumulatedSignal += signalStrength;
+    Network.debug("      " + this + ": New accumulated signal: " + accumulatedSignal);
   }
 
   protected final void addSourceAxon(Axon axon)
@@ -70,31 +73,22 @@ public abstract class Neuron
   {
     Neuron source = a.getSource();
     double input = source.getOutputValue();
-    /*if(source.id.equals("input1"))
-    {
-      System.out.println("input1 is outputting: " + input);
-    }*/
     return input * (1 - input) * a.getWeight();
   }
 
   public final List<Neuron> backPropogate()
   {
-    //System.out.println(this);
+    Network.debug(this + " is backpropogating");
     List<Neuron> affectedNeurons = new ArrayList<Neuron>();
     for(Axon axon : sourceAxons)
     {
-      //System.out.println("Axon connecting neurons: " + axon.getSource() + axon.getTarget());
-      //System.out.println("  Old weight: " + axon.getWeight());
+      Network.debug("  Evaluating axon to " + axon.getTarget());
+      Network.debug("    Old weight: " + axon.getWeight());
+      Network.debug("    Error caused by this axon's output: " + errorCausedByInput(axon));
       double adjustment = -0.5 * errorCausedByInput(axon);
+      Network.debug("    Adjusting by " + adjustment);
       axon.setWeight(axon.getWeight() + adjustment);
-      //System.out.println("  New weight: " + axon.getWeight());
-      try{
-        //Thread.sleep(2000);
-      }
-      catch(Exception e)
-      {
-        
-      }
+      Network.debug("    New weight: " + axon.getWeight());
       Neuron axonSource = axon.getSource();
       affectedNeurons.add(axonSource);
     }

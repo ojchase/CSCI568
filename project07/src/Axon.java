@@ -3,7 +3,7 @@ public class Axon
   private final Neuron source;
   private final Neuron target;
   private double weight;
-
+  
   public Axon(Neuron source, Neuron target)
   {
     this.source = source;
@@ -11,7 +11,8 @@ public class Axon
     source.addTargetAxon(this);
     if(target != null)
       target.addSourceAxon(this);
-    this.weight = Math.random() - Math.random(); // gives a range of -1 to +1
+    //this.weight = Math.random() - Math.random(); // gives a range of -1 to +1
+    this.weight = 0.5; // gives a range of -1 to +1
   }
 
   public Neuron getSource()
@@ -29,24 +30,16 @@ public class Axon
     return weight;
   }
 
-  // this may or may not get used; I haven't decided how I want to update weights yet
   public void setWeight(double weight)
   {
     this.weight = weight;
   }
-
-  // this may or may not get used; I haven't decided how I want to update weights yet
-  private void addWeight(double weight)
-  {
-    this.weight += weight;
-    if(this.weight > 1)
-      this.weight = 1;
-    if(this.weight < -1)
-      this.weight = -1;
-  }
   
   public void sendSignal(double signal)
   {
+    Network.debug("    Axon receiving value: " + signal);
+    Network.debug("    Weight: " + weight);
+    Network.debug("    " + source + "->" + target + " sending " + signal*weight);
     target.receiveSignal(signal*weight);
   }
 

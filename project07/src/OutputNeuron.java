@@ -24,9 +24,10 @@ public class OutputNeuron extends Neuron
   @Override
   public List<Neuron> fire()
   {
+    Network.debug(this + " is firing");
     outputValue = calculateOutput(accumulatedSignal);
     
-    System.out.println(id + ": " + outputValue);
+    System.out.println(id + " result: " + outputValue);
     return new ArrayList<Neuron>();
   }
   

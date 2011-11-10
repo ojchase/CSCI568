@@ -6,10 +6,24 @@ import java.util.Queue;
 
 public class Network
 {
-  private List<InputNeuron> inputNeurons = Arrays.asList(new InputNeuron("input1", 1), new InputNeuron("input2", 0.25), new InputNeuron("input3", -0.5));
+  private List<InputNeuron> inputNeurons = Arrays.asList(new InputNeuron("input1", 1), new InputNeuron("input2", 0.25), new InputNeuron("input3", -1*0.5));
   private List<HiddenNeuron> hiddenNeurons = Arrays.asList(new HiddenNeuron("hidden1"), new HiddenNeuron("hidden2"));
   private List<OutputNeuron> outputNeurons = Arrays.asList(new OutputNeuron("output1", 1), new OutputNeuron("output2", -1), new OutputNeuron("output3", 0));
 
+  public final static boolean DEBUG = true;
+  public final static int DELAY = 500;
+  public final static void debug(String arg)
+  {
+    if(DEBUG){
+      System.out.println(arg);
+      try{
+        Thread.sleep(DELAY);
+      }
+      catch(Exception e){
+      }
+    }
+  }
+  
   public Network()
   {    
     for(Neuron n : inputNeurons)
@@ -46,6 +60,7 @@ public class Network
     Queue<Neuron> neuronQueue = new LinkedList<Neuron>();
     while(!done)
     {
+      debug("Network: Begin firing stage");
       neuronQueue.addAll(inputNeurons);
       while(!neuronQueue.isEmpty())
       {
@@ -62,7 +77,6 @@ public class Network
       done = true;
       for(OutputNeuron outputNeuron : outputNeurons)
       {
-        //System.out.println(outputNeuron + ": " + outputNeuron.outputValue);
         if(outputNeuron.getError() > 0.001*outputNeuron.getExpectedValue())
         {
           done = false;
@@ -70,8 +84,11 @@ public class Network
         }
       }
       if(!done)
+      {
+        debug("Network: Begin backpropogation stage");
         backPropogate();
-      //Thread.sleep(2000);
+        debug("Network: Backpropogation complete");
+      }
     }
   }
   

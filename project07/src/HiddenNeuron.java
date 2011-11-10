@@ -11,11 +11,15 @@ public class HiddenNeuron extends Neuron
   @Override
   public List<Neuron> fire()
   {
+    Network.debug(this + " is firing");
     outputValue = calculateOutput(accumulatedSignal);
     
     List<Neuron> affectedNeurons = new ArrayList<Neuron>();
     for(Axon axon : targetAxons)
     {
+      Network.debug("  " + this + " Accumulated Signal: " + accumulatedSignal);
+      Network.debug("  " + this + " Output: " + outputValue);
+      Network.debug("  " + this + ": Sending value down axon to " + axon.getTarget() + ": " + outputValue);
       axon.sendSignal(outputValue);
       Neuron axonTarget = axon.getTarget();
       if(axonTarget != null)
