@@ -12,7 +12,7 @@ public class Axon
     if(target != null)
       target.addSourceAxon(this);
     //this.weight = Math.random() - Math.random(); // gives a range of -1 to +1
-    this.weight = 0.5; // gives a range of -1 to +1
+    this.weight = 0.5;
   }
 
   public Neuron getSource()
