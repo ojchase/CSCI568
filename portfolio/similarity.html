@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Portfolio 2 - Similarity Metrics</title>
+		<meta name="author" content="Oliver"/>
+	</head>
+	<body>
+		<h1>Portfolio 2</h1>
+		<h2>Similarity Metrics</h2>
+		<div id="Content">
+			<div id="Intro">
+				<h3>Why Do We Care?</h3>
+				<p>Is a cow similar to a buffalo?  Probably.  Is a MP3 similar to a piece of celery?  Probably not.  But how about comparing a customer who bought eggs and milk to a customer who bought egg substitute and baby formula?  Later on we'll cover algorithms that will depend heavily on knowing how similar things are to one another, and this can't be a vague "well, they're both large, four-legged critters" type reasoning.  It has to be quantifiable, so we come up with similarity metrics to at least attempt to take the guesswork out of the process.</p>
+			</div> <!--end of intro-->
+			<div id="Metrics">
+				<h3>How Do We Do It?</h3>
+				<p>Luckily for us, there are several well established similarity metrics already in existence that can be used to compare various types of objects, each with its own strengths and weaknesses.  Here's a few, or you could always create your own!</p>
+				<div id="SMC">
+					<h4>Simple Matching Coefficient</h4>
+					<p>The Simple Matching Coefficient (SMC) is ... well, simple.  All you do is check your data objects for areas where they match.  Say you have a person with the original Star Wars trilogy and another person who owns them too but also made the mistake of purchasing the new prequel trilogy.  If you consider the ownership of each film to be one attribute, then the first person's ownership vector could be represented as <0, 0, 0, 1, 1, 1> and the second person's as <1, 1, 1, 1, 1, 1>.  SMC then observes that the first three attributes (the prequel trilogy) does not match, but the following three do match.</p>
+				</div> <!-- end of SMC-->
+				<div id="Jaccard">
+					<h4>Jaccard Coefficient</h4>
+					<p>Explanation of Jaccard follows...</p>
+				</div> <!-- end of Jaccard-->
+				<div id="Euclidean">
+					<h4>Euclidean Distance</h4>
+					<p>Explanation of Euclidean follows...</p>
+				</div> <!-- end of Euclidean-->
+				<div id="Cosine">
+					<h4>Cosine Similarity</h4>
+					<p>Explanation of cosine follows...</p>
+				</div> <!-- end of Cosine-->
+			</div> <!-- end of metrics-->
+		</div> <!--end of content-->
+		<div class="Copyright">
+			<p>&copy; 2011 by Oliver Chase. All rights reserved.</p>
+		</div>
+	</body>
+</html>
