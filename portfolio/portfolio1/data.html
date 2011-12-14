@@ -68,11 +68,11 @@
 				</ul>
 				<p>Notice too that these categories are just a little bit fuzzy.  For example, "red" and "blue" were classified above as nominal values, but they could just as well be represented by their wavelengths, which are actually ratio numbers (e.g. about 475nm for blue and 650nm for red).  "Bob" and "Sue" are also nominal, but if you provide them with distinct employee IDs, then they can become sortable as ordinal data.  (You could argue that even then they're still nominal, but those IDs may be meaningful and store extra information, like the order of hire, that would make their order matter.)</p>
 				<p>Why does this matter?  Some of the distinctions are related to the concept of <em>transformations</em>.  You may at some point find that your column of data from -48.2847 to 55 is not particularly convenient to work with and wish to change it to a 0 to 100 scale.  How you're allowed to do that will depend on the data type.  If they're nominal values, you would wonder why you ever had a -48.2847 in the first place, but you can arbitrarily change it to anything else if you wish, as long as it doesn't conflict with another value.  But if it indicates a set interval between itself and other values, then you better adjust all the values by the same amount (i.e. now your scale is 0 to 103.2847).</p>
-				<p>Also, we did a project with mushroom data, trying to predict which are poisonous and which aren't, which used a lot of nominal data, such as the type of ring on the mushroom (i.e. bulbous, club, cup, equal, rhizomorphs, or rooted).  You have to be aware that these are nominal attributes, because you really don't want to say that bulbous and club ring types are only one different from each other and therefore very similar mushrooms.  I don't know what these terms actually mean, but I'm not willing to stake my life on the dissimalarity of a cup or rooted ring, are you?</p>
+				<p>Also, we did a project with mushroom data, trying to predict which are poisonous and which aren't, which used a lot of nominal data, such as the type of ring on the mushroom (i.e. bulbous, club, cup, equal, rhizomorphs, or rooted).  You have to be aware that these are nominal attributes, because you really don't want to say that bulbous and club ring types are only one different from each other and therefore very similar mushrooms.  I don't know what these terms actually mean, but I'm not willing to stake my life on the dissimilarity of a cup or rooted ring, are you?</p>
 			</div> <!-- end of AttributeTypes-->
 			<div id="DataQuality">
 				<h2>Data Quality</h2>
-				<p>blah blah blah</p>
+				<p>As mentioned, no matter how wonderful the data mining could eventually be, if your data itself is not in good shape, you're not going to get anything meaningful.  There are a number of potential data quality issues.  One is that there were errors in the collection process.  Maybe the thermometer was calibrated incorrectly and every value is really a couple degrees higher.  Regardless, there will still always be noise in your data.  This is a result of natural variation in real-world measurements; no matter how good your technique is, nature just won't cooperate sometimes.  </p>
 			</div> <!--end of DataQuality-->
 			<div id="ExploringData">
 				<h2>Exploring Data</h2>
@@ -83,6 +83,10 @@
 				<p>blah blah blah</p>
 			</div> <!--end of DataVisualization-->
 		</div> <!--end of content-->
+		<div class="MoreInfo">
+			<h2>More Information</h2>
+			<p>See chapter 2 of <em>Introduction to Data Mining</em> by Tan, Steinbach, and Kumar, 2009. <em>Beautiful Data</em> (by Segaran and Hammerbacher, 2009) also discusses data quality issues.</p>
+		</div> <!--end of MoreInfo-->
 <h1>What's left to do</h1>		
 <ul>
   <li>An exposition about data quality. What are common problems? How are they handled? Specifically mention the case of human-generated data, citing BD.</li>
