@@ -12,9 +12,9 @@
 				<h2>Why Do We Care?</h2>
 				<p>All the best data mining algorithms in the world will be utterly useless to us if the data we use is not good quality.  Add more stuff here...</p>
 			</div> <!--end of intro-->
-			<div id="DataTypes">
-				<h2>Data Types</h2>
-				<p>The first thing you have to be aware of is the types of data you're using.  I discovered in another project that binary data was more useful to me than a range of integer values, and so it took a good amount of time to binarize my data into a useful format.  Most data types fit one of two categories: Numeric or Categorical.  Some of the distinctions are related to the concept of <em>transformations</em>.  You may at some point find that your column of data from -48.2847 to 55 is not particularly convenient to work with and wish to change it to a 0 to 100 scale.  How you're allowed to do that will depend on the data type.</p>
+			<div id="AttributeTypes">
+				<h2>Attribute Types</h2>
+				<p>The first thing you have to be aware of is the types of data you're using.  I discovered in another project that binary data was more useful to me than a range of integer values, and so it took a good amount of time to binarize my data into a useful format.  Most data types fit one of two categories: Numeric or Categorical.</p>
 				<ul>
 					<li>
 						<h3>Numeric</h3>
@@ -22,28 +22,34 @@
 						<ul>
 							<li>
 								<h4>Interval</h4>
+								<p>In my opinion, these are the most obvious data to understand, and hardly need description.  Interval data is anything where you can put different numbers and the difference between them is meaningful.  For example, seven cats is exactly six more than one cat.  (Actually, this is ratio data, but hold that thought.)  Another example is dates; October 27 is an interval value, as is October 3.  The gap of 24 days is meaningful.</p>
 							</li>
 							<li>
 								<h4>Ratio</h4>
+								<p>For ratio data, not only is the gap between values meaningful, but the ratio between them should be too.  October 27 is not nine times larger than October 3 under normal circumstances, so it's not a ratio.  However, seven cats is not ony six more than one cat (and thus qualifies as interval data), but it's also more specifically seven times larger than one cat, so it's also the more restrictive ratio data. </p>
 							</li>
 						</ul>
+						<p>Another example distinguishing interval and ratio data is temperature.  Ask yourself: Is 80 degrees Fahrenheit twice as warm as 40 degrees Fahrenheit?  I can't really answer that on a whim, but the science would indicate "no".  Thus, it's merely an interval.  Kelvin, however, is different.  As it's based on absolute zero and not arbitrary temperatures, you can say that 200 Kelvin is half of 400 Kelvin.  Thus it's ratio data.</p>
 					</li>
 					<li>
 						<h3>Categorical</h3>
-						<p>Categorical data look obvious at first, but can be easily mixed up with the numeric data if you're not careful.  Why?  Because they often look like numbers, and will probably be represented in your data set with integers.  But there's an important subtle difference.  Categorical, or "qualitative", data represent <em>distinct</em> data elements, and can be nominal or ordinal.</p>
+						<p>Categorical data look obvious at first, but can be easily mixed up with the numeric data if you're not careful.  Why?  Because they often look like numbers, and will probably be represented in your data set with integers.  But there's an important subtle difference.  Categorical, or "qualitative", data represent distinct (<em>discrete</em>) data elements, and can be nominal or ordinal.</p>
 						<ul>
 							<li>
 								<h4>Nominal</h4>
-								<p>I find nominal data to be the easiest, after interval numeric data above, to grasp intuitively.  These are distinct elements that don't have any particular ordering to them.  For example, if you're a bartering service, the available products would probably be nominal attributes: bookshelf, coffee maker, Newsboys CD, and so on.
+								<p>I find nominal data to be the easiest, after interval numeric data above, to grasp intuitively.  These are distinct elements that don't have any particular ordering to them.  For example, if you're a bartering service, the available products would probably be nominal attributes: bookshelf, coffee maker, Newsboys CD, and so on.  The color of the item would itself be nominal (e.g. red or blue).</p>
 							</li>
 							<li>
 								<h4>Ordinal</h4>
+								<p>Ordinal data are superficially similar to nominal data, but they also possess some sort of inherent ordering.  For example, the grade levels "A", "B", "C", "D", and "F" are distinct elements, but there is also a definite order, and the "B" better come before "C".</p>
 							</li>
 						</ul>
 					</li>
 				</ul>
-				<p>Notice too that these categories are just a little bit fuzzy.  For example, "red" and "blue" were classified above as nominal values, but they could [AAAAAAAAA].  "Bob" and "Sue" are also nominal, but if you provide them with distinct employee IDs, then they can become sortable as ordinal data.</p>
-			</div> <!-- end of DataTypes-->
+				<p>Notice too that these categories are just a little bit fuzzy.  For example, "red" and "blue" were classified above as nominal values, but they could just as well be represented by their wavelengths, which are actually ratio numbers (e.g. about 475nm for blue and 650nm for red).  "Bob" and "Sue" are also nominal, but if you provide them with distinct employee IDs, then they can become sortable as ordinal data.  (You could argue that even then they're still nominal, but those IDs may be meaningful and store extra information, like the order of hire, that would make their order matter.)</p>
+				<p>Why does this matter?  Some of the distinctions are related to the concept of <em>transformations</em>.  You may at some point find that your column of data from -48.2847 to 55 is not particularly convenient to work with and wish to change it to a 0 to 100 scale.  How you're allowed to do that will depend on the data type.  If they're nominal values, you would wonder why you ever had a -48.2847 in the first place, but you can arbitrarily change it to anything else if you wish, as long as it doesn't conflict with another value.  But if it indicates a set interval between itself and other values, then you better adjust all the values by the same amount (i.e. now your scale is 0 to 103.2847).</p>
+				<p>Also, we did a project with mushroom data, trying to predict which are poisonous and which aren't, which used a lot of nominal data, such as the type of ring on the mushroom (i.e. bulbous, club, cup, equal, rhizomorphs, or rooted).  You have to be aware that these are nominal attributes, because you really don't want to say that bulbous and club ring types are only one different from each other and therefore very similar mushrooms.  I don't know what these terms actually mean, but I'm not willing to stake my life on the dissimalarity of a cup or rooted ring, are you?</p>
+			</div> <!-- end of AttributeTypes-->
 		</div> <!--end of content-->
 			
 <ul>
