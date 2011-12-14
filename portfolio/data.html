@@ -10,22 +10,26 @@
 		<div id="Content">
 			<div id="Intro">
 				<h2>Why Do We Care?</h2>
-				<p>All the best data mining algorithms in the world will be utterly useless to us if the data we use is not good quality.  Add more stuff here...</p>
+				<p>You're joking, right?  Data mining uses, well, data, and all the time.  It's kind of the point.  So we need to have some idea of what it is and what to be careful of.  We'll cover some of the different kinds of data and what issues they present.  Further, all the best data mining algorithms in the world will be utterly useless to us if the data we use is not good quality, so we'll look at data quality issues and how to resolve them.</p>
 			</div> <!--end of intro-->
 			<div id="DatasetTypes">
 				<h2>Dataset Types</h2>
 				<ul>
 					<li>
 						<h3>Record data</h3>
+						<p>Record data is basically a list of objects, each with one or more attributes.  For example, we did a survey for CSCI522 and our records were response sets, one per person.  Market basket data fits here as well, where each customer is a record and all the possible items are the attributes, most of which will be 0 but a few (important ones!) will be nonzero.</p>
 					</li>
 					<li>
 						<h3>Graph-based data</h3>
+						<p>Graph-based data is used to express relationships.  You might display friend networks or web links using some sort of graph dataset.</p>
 					</li>
 					<li>
 						<h3>Ordered data</h3>
+						<p>These are datasets where there is some ordering between the values.  For example, you may be recording your mood at various times of the day (time series data) or the population densities across the planet (spatial data), or even worse both at the same time (population over time)!  Simple sequences of data or events would go here too.</p>
 					</li>
 				</ul>
-				<p>Other concepts: You also want to pay attention to the dimensionalty and sparsity of the data in the dataset.  Dimensionality refers to the number of different attributes in the dataset.  Too many different attributes (i.e. high dimensionality) can cause some algorithms to work slowly.  Also, you may be able to work more efficiently when you recognize your dataset is sparse, which means it mostly has "0"s in the data.  Often, all you really have to pay attention to is the presence of values, and a 0 can be ignored, reducing the dataset size signficantly.</p>
+				<p>Note: We didn't talk much about graph or ordered data.  The algorithms we used were designed for record data but could be extended for the other types.  Going forward, assume we're just using record data.</p>
+				<p>Other concepts: You also want to pay attention to the dimensionalty and sparsity of the data in the dataset.  Dimensionality refers to the number of different attributes in the dataset.  Too many different attributes (i.e. high dimensionality) can cause some algorithms to work slowly.  Also, you may be able to work more efficiently when you recognize your dataset is sparse, which means it mostly has "0"s in the data, as with market basket data.  Often, all you really have to pay attention to is the presence of values, and a 0 can be ignored, reducing the dataset size signficantly.</p>
 			</div> <!--end of DatasetTypes-->
 			<div id="AttributeTypes">
 				<h2>Attribute Types</h2>
@@ -66,11 +70,21 @@
 				<p>Why does this matter?  Some of the distinctions are related to the concept of <em>transformations</em>.  You may at some point find that your column of data from -48.2847 to 55 is not particularly convenient to work with and wish to change it to a 0 to 100 scale.  How you're allowed to do that will depend on the data type.  If they're nominal values, you would wonder why you ever had a -48.2847 in the first place, but you can arbitrarily change it to anything else if you wish, as long as it doesn't conflict with another value.  But if it indicates a set interval between itself and other values, then you better adjust all the values by the same amount (i.e. now your scale is 0 to 103.2847).</p>
 				<p>Also, we did a project with mushroom data, trying to predict which are poisonous and which aren't, which used a lot of nominal data, such as the type of ring on the mushroom (i.e. bulbous, club, cup, equal, rhizomorphs, or rooted).  You have to be aware that these are nominal attributes, because you really don't want to say that bulbous and club ring types are only one different from each other and therefore very similar mushrooms.  I don't know what these terms actually mean, but I'm not willing to stake my life on the dissimalarity of a cup or rooted ring, are you?</p>
 			</div> <!-- end of AttributeTypes-->
+			<div id="DataQuality">
+				<h2>Data Quality</h2>
+				<p>blah blah blah</p>
+			</div> <!--end of DataQuality-->
+			<div id="ExploringData">
+				<h2>Exploring Data</h2>
+				<p>blah blah blah</p>
+			</div> <!--end of ExploringData-->
+			<div id="DataVisualization">
+				<h2>Data Visualization</h2>
+				<p>blah blah blah</p>
+			</div> <!--end of DataVisualization-->
 		</div> <!--end of content-->
 <h1>What's left to do</h1>		
 <ul>
-  <li>An introduction that summarizes the aspects of data you describe below.</li>
-  <li>Descriptions of dataset types and attribute types, and why these types are important to think about (what are the "side effects" of different dataset types, such as temporal correlation?)</li>
   <li>An exposition about data quality. What are common problems? How are they handled? Specifically mention the case of human-generated data, citing BD.</li>
   <li>An exposition about exploring data. Why is it important? What are the common summary statistics? Show some screenshots of a data mining tool providing these stats.</li>
   <li>An exposition about visualizing data. Where does dataviz fit in the data mining process? Show an example of a visualization you created with Processing.</li>
