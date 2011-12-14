@@ -14,7 +14,7 @@
 			</div> <!--end of intro-->
 			<div id="Metrics">
 				<h2>How Do We Do It?</h2>
-				<p>Luckily for us, there are several well established similarity metrics already in existence that can be used to compare various types of objects, each with its own strengths and weaknesses.  Here's a few, and an implementation in Ruby, or you could always create your own!</p>
+				<p>Luckily for us, there are several well established similarity metrics already in existence that can be used to compare various types of objects, each with its own strengths and weaknesses.  Here's a few, and an implementation in Ruby, or you could always create your own!  (As a couple in our class did for a CSCI522 project.)</p>
 				<div id="SMC">
 					<h3>Simple Matching Coefficient</h3>
 					<p>The Simple Matching Coefficient (SMC) is ... well, simple.  All you do is check your data objects for areas where they match.  Say you have a person, Bob, with the original Star Wars trilogy and another person, John, who owns them too but also made the mistake of purchasing the new prequel trilogy.  If you consider the ownership of each film to be one attribute, then the Bob's ownership vector could be represented as <0, 0, 0, 1, 1, 1> and John's as <1, 1, 1, 1, 1, 1>.  SMC then observes that the first three attributes (the prequel trilogy) does not match, but the following three do match.  Thus, we have 3 matches out of 6 attributes, for a similarity result of 3/6 = <strong>0.5</strong>.</p>
@@ -69,12 +69,29 @@ end
 				</div> <!-- end of Jaccard-->
 				<div id="Euclidean">
 					<h3>Euclidean Distance</h3>
-					<p>Explanation of Euclidean follows...</p>
+					<p>You probably already know all about Euclidean Distance, but you may not know it.  This is basically the "distance formula" covered in high school algebra.  In case you don't remember, the distance is the square root of the sum of the squares of the sides in each direction.  In two dimensions, this is the same as the Pythagorean Theorem, but the math still works out in higher dimensions as well.  The only problem is that we would prefer the similarity metric to return scores between 0 (dissimilar) and 1 (perfectly similar).  Euclidean Distance, as described, would return high values for very dissimilar objects and 0 for a perfect match.  To solve this problem, we just normalize the score by returning 1/(1+distance).  This way large distances head toward 0 and perfect matches with no distance come out as 1, as we'd want.  If your attributes have wildly varying scales, the larger scales have greater potential to affect the result, so you may want to scale them similarly in preprocessing.</p>
+					<pre>
+def euclidean(object1, object2)
+  if object1.values.length != object2.values.length
+    return "Euclidean Distance can't be calculated as objects have a different number of values!"
+  else
+    length = object1.values.length
+    result = 0
+    for i in (0...length)
+      result = result + (object1.values[i]-object2.values[i])**2
+    end
+    result = Math.sqrt(result)
+  end
+  
+  #normalizing!
+  result = 1 / (1 + result.to_f)
+
+  puts "Euclidean distance is #{result}!"
+  return result
+end
+					</pre>
+					<p>Euclidean Distance works well for continuous attributes, but very poorly for binary.  Why?  Because squaring and square rooting a differences of 0 or 1 don't provide very interesting results.  SMC or Jaccard would be better for these, but Euclidean Distance is great for combining differences of many attributes into one value.</p>
 				</div> <!-- end of Euclidean-->
-				<div id="Cosine">
-					<h3>Cosine Similarity</h3>
-					<p>Explanation of cosine follows...</p>
-				</div> <!-- end of Cosine-->
 			</div> <!-- end of metrics-->
 		</div> <!--end of content-->
 		<div class="MoreInfo">
