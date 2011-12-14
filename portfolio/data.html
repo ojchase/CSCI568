@@ -12,13 +12,28 @@
 				<h2>Why Do We Care?</h2>
 				<p>All the best data mining algorithms in the world will be utterly useless to us if the data we use is not good quality.  Add more stuff here...</p>
 			</div> <!--end of intro-->
+			<div id="DatasetTypes">
+				<h2>Dataset Types</h2>
+				<ul>
+					<li>
+						<h3>Record data</h3>
+					</li>
+					<li>
+						<h3>Graph-based data</h3>
+					</li>
+					<li>
+						<h3>Ordered data</h3>
+					</li>
+				</ul>
+				<p>Other concepts: You also want to pay attention to the dimensionalty and sparsity of the data in the dataset.  Dimensionality refers to the number of different attributes in the dataset.  Too many different attributes (i.e. high dimensionality) can cause some algorithms to work slowly.  Also, you may be able to work more efficiently when you recognize your dataset is sparse, which means it mostly has "0"s in the data.  Often, all you really have to pay attention to is the presence of values, and a 0 can be ignored, reducing the dataset size signficantly.</p>
+			</div> <!--end of DatasetTypes-->
 			<div id="AttributeTypes">
 				<h2>Attribute Types</h2>
 				<p>The first thing you have to be aware of is the types of data you're using.  I discovered in another project that binary data was more useful to me than a range of integer values, and so it took a good amount of time to binarize my data into a useful format.  Most data types fit one of two categories: Numeric or Categorical.</p>
 				<ul>
 					<li>
 						<h3>Numeric</h3>
-						<p>These are pretty intuitive: any form of data that has a number attached.  You may have heard of them in science education as "quantitative" data.  We can further narrow this down into interval or ratio data:
+						<p>These are pretty intuitive: any form of data that has a number, often continuous, attached.  You may have heard of them in science education as "quantitative" data.  We can further narrow this down into interval or ratio data:
 						<ul>
 							<li>
 								<h4>Interval</h4>
@@ -38,6 +53,7 @@
 							<li>
 								<h4>Nominal</h4>
 								<p>I find nominal data to be the easiest, after interval numeric data above, to grasp intuitively.  These are distinct elements that don't have any particular ordering to them.  For example, if you're a bartering service, the available products would probably be nominal attributes: bookshelf, coffee maker, Newsboys CD, and so on.  The color of the item would itself be nominal (e.g. red or blue).</p>
+								<p>Binary data would go here.</p>
 							</li>
 							<li>
 								<h4>Ordinal</h4>
@@ -51,7 +67,7 @@
 				<p>Also, we did a project with mushroom data, trying to predict which are poisonous and which aren't, which used a lot of nominal data, such as the type of ring on the mushroom (i.e. bulbous, club, cup, equal, rhizomorphs, or rooted).  You have to be aware that these are nominal attributes, because you really don't want to say that bulbous and club ring types are only one different from each other and therefore very similar mushrooms.  I don't know what these terms actually mean, but I'm not willing to stake my life on the dissimalarity of a cup or rooted ring, are you?</p>
 			</div> <!-- end of AttributeTypes-->
 		</div> <!--end of content-->
-			
+<h1>What's left to do</h1>		
 <ul>
   <li>An introduction that summarizes the aspects of data you describe below.</li>
   <li>Descriptions of dataset types and attribute types, and why these types are important to think about (what are the "side effects" of different dataset types, such as temporal correlation?)</li>
