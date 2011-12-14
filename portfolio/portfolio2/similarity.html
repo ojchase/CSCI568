@@ -14,14 +14,58 @@
 			</div> <!--end of intro-->
 			<div id="Metrics">
 				<h2>How Do We Do It?</h2>
-				<p>Luckily for us, there are several well established similarity metrics already in existence that can be used to compare various types of objects, each with its own strengths and weaknesses.  Here's a few, or you could always create your own!</p>
+				<p>Luckily for us, there are several well established similarity metrics already in existence that can be used to compare various types of objects, each with its own strengths and weaknesses.  Here's a few, and an implementation in Ruby, or you could always create your own!</p>
 				<div id="SMC">
 					<h3>Simple Matching Coefficient</h3>
-					<p>The Simple Matching Coefficient (SMC) is ... well, simple.  All you do is check your data objects for areas where they match.  Say you have a person with the original Star Wars trilogy and another person who owns them too but also made the mistake of purchasing the new prequel trilogy.  If you consider the ownership of each film to be one attribute, then the first person's ownership vector could be represented as <0, 0, 0, 1, 1, 1> and the second person's as <1, 1, 1, 1, 1, 1>.  SMC then observes that the first three attributes (the prequel trilogy) does not match, but the following three do match.</p>
+					<p>The Simple Matching Coefficient (SMC) is ... well, simple.  All you do is check your data objects for areas where they match.  Say you have a person, Bob, with the original Star Wars trilogy and another person, John, who owns them too but also made the mistake of purchasing the new prequel trilogy.  If you consider the ownership of each film to be one attribute, then the Bob's ownership vector could be represented as <0, 0, 0, 1, 1, 1> and John's as <1, 1, 1, 1, 1, 1>.  SMC then observes that the first three attributes (the prequel trilogy) does not match, but the following three do match.  Thus, we have 3 matches out of 6 attributes, for a similarity result of 3/6 = <strong>0.5</strong>.</p>
+					<pre>
+def smc(object1, object2)
+  if object1.values.length != object2.values.length
+    return "SMC can't be calculated as objects have a different number of values!"
+  else
+    length = object1.values.length
+    denom = length.to_f
+    matchCount = 0
+    for i in (0...length)
+      if(object1.values[i] == object2.values[i])
+        matchCount = matchCount + 1
+      end
+    end
+    result = matchCount / denom
+  end
+  
+  puts "SMC is #{result}!"
+  return result
+end
+					</pre>
+					<p>SMC is great for what it is: a quick and easy way to compare objects where we just care about the values that are equal.  It won't work for continuous, or even non-nominal, data, but is great for binary fields.</p>
 				</div> <!-- end of SMC-->
 				<div id="Jaccard">
 					<h3>Jaccard Coefficient</h3>
-					<p>Explanation of Jaccard follows...</p>
+					<p>The Jaccard Coefficient is very similar to SMC, with only one difference: It doesn't care about the absence of values missing in both objects.  SMC may assume that two very different objects are very similar because they have a large number of areas in which both <em>lack</em> a value, instead of the presence of areas where they <em>share</em> a value.  Using the Star Wars example again, if we were part of a much larger movie system like Netflix, there would be thousands of videos in each person's ownership vector.  And almost every space would be a 0.  In other words, their vectors would be like this one: <0 or 1, 0 or 1, 0 or 1, 1, 1, 1, 0, 0, 0, ...(100000x)...,0,0>.  SMC would see this as near perfect similarity as both people have matching zeros all over the place.  Both people own 3 or 6 Star Wars films, but they both lack the millions of other possible movies in the database.  But in this case it's the movies you actually own, not the ones you don't own, that matter, and these two people should be viewed differently (general sci-fi lover vs. Star Wars nut).  So Jaccard goes ahead and completely ignores all the romance and western films and just compares the six Star Wars films, again coming up with 0.5 for the similarity score.  (Yes, it's the same number, but with a lot more films being compared.  SMC is now close to 1.)</p>
+					<pre>
+def jaccard(object1, object2)
+  if object1.values.length != object2.values.length
+    return "Jaccard can't be calculated as objects have a different number of values!"
+  else
+    length = object1.values.length
+    denom = length.to_f
+    matchCount = 0
+    for i in (0...length)
+      if(object1.values[i] == object2.values[i])
+        if(object1.values[i] != 0)
+          matchCount = matchCount + 1
+        end
+      end
+    end
+    result = matchCount / denom
+  end
+  
+  puts "Jaccard Similarity is #{result}!"
+return result
+end
+					</pre>
+					<p>In general, Jaccard can be used anywhere where SMC is, just with possibly better results.</p>
 				</div> <!-- end of Jaccard-->
 				<div id="Euclidean">
 					<h3>Euclidean Distance</h3>
