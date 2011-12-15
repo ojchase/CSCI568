@@ -15,11 +15,23 @@
 			</div> <!--end of intro-->
 			<div id="Algorithms">
 				<h2>How Do We Do It?</h2>
-				<p>As with the similarity metrics, there are multiple ways to cluster data, and none is perfect.  Perhaps the best one is still to be discovered, or is dependent on your specific use.  Here's a few, or you could always create your own!</p>
+				<p>First, please excuse the low-tech graphics.  They're extremely simple and contrived to make a point, and made with Paint to avoid having to deal with more complex programs or getting copyright permission from others.</p>
+				<p>There are multiple ways to cluster data, and none is perfect.  Perhaps the best one is still to be discovered, or is dependent on your specific use.  Here's a few, or you could always create your own!</p>
 				<div id="KMeans">
 					<h3>K-Means</h3>
 					<h4>How It Works</h4>
-					<img></img>
+					<p>K-Means is a prototype based clustering algorithm, which means it uses a representative data point ("prototype") to generate the clusters.  The beauty of K-Means is that this prototype moves around until reasonably optimal.  At the end you can describe the clusters reasonably well just by looking at the prototype points.  We'll use this dataset to illustrate.  Note the boundary where the reasonable human would mentally place the two clusters and that I colored the two clusters differently:</p>
+					<img src="kMeans/step0.png" alt="Initial Data for K-Means">
+					<p>First, you'll want to decide how many clusters you want to achieve.  This may be obvious from your application, but it could also be unknown, so make a reasonable guess for now.  We'll call this number K.  Next, you'll want to randomly generate K points ("centroids") somewhere throughout your data.  The initial centroids should be random, but they should also be reasonable.  If all your data is between 0 and 3 in each dimension, it won't make sense to put a centroid at <3, 458, -34>, so limit it to the bounds of the data.  Here we've removed the mental cluster boundaries, reset the points to unclustered black, and added two random, separately-colored centroids:</p>
+					<img src="kMeans/step1.png" alt="Added red and blue centroids">					
+					<p>Now the fun begins.  You have K initial centroids, and each data point is going to find the closest centroid to itself.  How, you may ask?  Well, it should use some similarity metric between itself and each centroid, selecting the centroid with the highest similarity.  (Euclidean Distance will probably work well for such a problem.)  Now each point has identified itself with the closest centroid, and we've color-coded it to help you visualize:</p>
+					<img src="kMeans/step2.png" alt="Points assigned centroids">
+					<p>Next is the most important step: The centroids now are forced to move to become more representative of their following points.  In other words, we average all of the data points belonging to each cluster and move the centroid there:</p>
+					<img src="kMeans/step3.png" alt="Centroids have moved">
+					<p>Now we just repeat the last two steps until we reach a stopping condition.  The points will relocate themselves to whichever centroid is nearest, and the centroids will move to their clusters' average position, and so on.</p>
+					<img src="kMeans/step4.png" alt="Points have changed centroids">
+					<p>When do we stop?  This may depend on how complex your dataset is, but the easiest reasonable stopping condition is when you go through a full iteration with no point changing its centroid selection.  Another might be to stop when the SSE (a measure of the tightness of the clusters) fails to improve, but that's a little outside the scope of this page.  Here, the centroids are now about where you'd expect and the points are all clustered correctly.  You can continue running the algorithm all you want, but no point is ever going to switch clusters, so it's effectively done.</p>
+					<img src="kMeans/step5.png" alt="Centroids have moved, and points will not change clusters again">
 					<h4>When To Use</h4>
 					<h4>Code</h4>
 				</div> <!-- end of KMeans-->
