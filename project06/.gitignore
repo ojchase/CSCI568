@@ -1,0 +1,6 @@
+~*
+*.wbk
+*.csv
+*.png
+.project
+*.rb
