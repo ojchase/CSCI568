@@ -1,0 +1,299 @@
+Name,Winner_Loser,Has three words,Starts A,Starts B,Start letter,First Name Length,Starts C,Last Name Length,First and Last names of equal length,Second letter of first name
+Ed Pednault, - ,0,FALSE,FALSE,E,2,FALSE,8,FALSE,d
+Neela Khan, + ,0,FALSE,FALSE,N,5,FALSE,4,FALSE,e
+Bir Bhanu, + ,0,FALSE,TRUE,B,3,FALSE,5,FALSE,i
+Arlindo Oliveira, - ,0,TRUE,FALSE,A,7,FALSE,8,FALSE,r
+Irina Tchoumatchenko, - ,0,FALSE,FALSE,I,5,FALSE,14,FALSE,r
+Robert C. Holte, + ,1,FALSE,FALSE,R,6,FALSE,5,FALSE,o
+Michele Sebag, + ,0,FALSE,FALSE,M,7,FALSE,5,FALSE,i
+Jorg-Uwe Kietz, + ,0,FALSE,FALSE,J,8,FALSE,5,FALSE,o
+Yoshifumi Sakai, + ,0,FALSE,FALSE,Y,9,FALSE,5,FALSE,o
+Thomas E. Kammeyer, - ,1,FALSE,FALSE,T,6,FALSE,8,FALSE,h
+Yoav Freund, + ,0,FALSE,FALSE,Y,4,FALSE,6,FALSE,o
+R. Andrew McCallum, - ,1,FALSE,FALSE,R,2,FALSE,8,FALSE,.
+Jonathan Gratch, + ,0,FALSE,FALSE,J,8,FALSE,6,FALSE,o
+Margo Guertin, + ,0,FALSE,FALSE,M,5,FALSE,7,FALSE,a
+Huw Roberts, + ,0,FALSE,FALSE,H,3,FALSE,7,FALSE,u
+Sally Goldman, + ,0,FALSE,FALSE,S,5,FALSE,7,FALSE,a
+Bhaskar Dasgupta, - ,0,FALSE,TRUE,B,7,FALSE,8,FALSE,h
+Fernando Pereira, + ,0,FALSE,FALSE,F,8,FALSE,7,FALSE,e
+Nina Mishra, + ,0,FALSE,FALSE,N,4,FALSE,6,FALSE,i
+Wray Buntine, - ,0,FALSE,FALSE,W,4,FALSE,7,FALSE,r
+William A. Greene, + ,1,FALSE,FALSE,W,7,FALSE,6,FALSE,i
+Yolanda Gil, + ,0,FALSE,FALSE,Y,7,FALSE,3,FALSE,o
+Chris Drummond, - ,0,FALSE,FALSE,C,5,TRUE,8,FALSE,h
+Claude Sammut, - ,0,FALSE,FALSE,C,6,TRUE,6,TRUE,l
+Charles X. Ling, - ,1,FALSE,FALSE,C,7,TRUE,4,FALSE,h
+Sanjay Jain, + ,0,FALSE,FALSE,S,6,FALSE,4,FALSE,a
+Stefan Kramer, - ,0,FALSE,FALSE,S,6,FALSE,6,TRUE,t
+Cristina Baroglio, - ,0,FALSE,FALSE,C,8,TRUE,8,TRUE,r
+Dwight Schrute, + ,0,FALSE,FALSE,D,6,FALSE,7,FALSE,w
+Leslie Pack Kaelbling, + ,1,FALSE,FALSE,L,6,FALSE,9,FALSE,e
+Philip Chan, - ,0,FALSE,FALSE,P,6,FALSE,4,FALSE,h
+Yishay Mansour, + ,0,FALSE,FALSE,Y,6,FALSE,7,FALSE,i
+Michael I. Jordan, + ,1,FALSE,FALSE,M,7,FALSE,6,FALSE,i
+Patrick M. Murphy, + ,1,FALSE,FALSE,P,7,FALSE,6,FALSE,a
+Karsten Verbeurgt, + ,0,FALSE,FALSE,K,7,FALSE,9,FALSE,a
+Attilio Giordana, - ,0,TRUE,FALSE,A,7,FALSE,8,FALSE,t
+Gerald F. DeJong, + ,1,FALSE,FALSE,G,6,FALSE,6,TRUE,e
+Thomas Zeugmann, - ,0,FALSE,FALSE,T,6,FALSE,8,FALSE,h
+Mandayam T. Suraj, + ,1,FALSE,FALSE,M,8,FALSE,5,FALSE,a
+Michael Littman, + ,0,FALSE,FALSE,M,7,FALSE,7,TRUE,i
+Shaul Markovitch, - ,0,FALSE,FALSE,S,5,FALSE,10,FALSE,h
+Eric Allender, - ,0,FALSE,FALSE,E,4,FALSE,8,FALSE,r
+Cullen Schaffer, + ,0,FALSE,FALSE,C,6,TRUE,8,FALSE,u
+Roberto Piola, + ,0,FALSE,FALSE,R,7,FALSE,5,FALSE,o
+Nader Bshouty, + ,0,FALSE,FALSE,N,5,FALSE,7,FALSE,a
+Bruce A. MacDonald, - ,1,FALSE,TRUE,B,5,FALSE,9,FALSE,r
+Kamal M. Ali, + ,1,FALSE,FALSE,K,5,FALSE,3,FALSE,a
+Foster J. Provost, + ,1,FALSE,FALSE,F,6,FALSE,7,FALSE,o
+Wolfgang Janko, + ,0,FALSE,FALSE,W,8,FALSE,5,FALSE,o
+Seth Flanders, + ,0,FALSE,FALSE,S,4,FALSE,8,FALSE,e
+Peter Bartlett, + ,0,FALSE,FALSE,P,5,FALSE,8,FALSE,e
+Craig Knoblock, - ,0,FALSE,FALSE,C,5,TRUE,8,FALSE,r
+Earl S. Harris Jr., + ,2,FALSE,FALSE,E,4,FALSE,3,FALSE,a
+Prasad Tadepalli, - ,0,FALSE,FALSE,P,6,FALSE,9,FALSE,r
+Stan Matwin, - ,0,FALSE,FALSE,S,4,FALSE,6,FALSE,t
+Pascal Koiran, + ,0,FALSE,FALSE,P,6,FALSE,6,TRUE,a
+Sandra Panizza, + ,0,FALSE,FALSE,S,6,FALSE,7,FALSE,a
+George Berg, + ,0,FALSE,FALSE,G,6,FALSE,4,FALSE,e
+Stephen Kwek, - ,0,FALSE,FALSE,S,7,FALSE,4,FALSE,t
+J. R. Quinlan, - ,1,FALSE,FALSE,J,2,FALSE,7,FALSE,.
+Sebastian Seung, + ,0,FALSE,FALSE,S,9,FALSE,5,FALSE,e
+Susan L. Epstein, + ,1,FALSE,FALSE,S,5,FALSE,7,FALSE,u
+Priscilla Rasmussen, - ,0,FALSE,FALSE,P,9,FALSE,9,TRUE,r
+Steven Minton, - ,0,FALSE,FALSE,S,6,FALSE,6,TRUE,t
+Lance Riley, + ,0,FALSE,FALSE,L,5,FALSE,5,TRUE,a
+Jose L. Balcazar, + ,1,FALSE,FALSE,J,4,FALSE,8,FALSE,o
+William Sakas, + ,0,FALSE,FALSE,W,7,FALSE,5,FALSE,i
+Claudio Facchinetti, - ,0,FALSE,FALSE,C,7,TRUE,11,FALSE,l
+Vijay Raghavan, + ,0,FALSE,FALSE,V,5,FALSE,8,FALSE,i
+Bob Evans, + ,0,FALSE,TRUE,B,3,FALSE,5,FALSE,o
+Neil Berkman, + ,0,FALSE,FALSE,N,4,FALSE,7,FALSE,e
+Masayuki Inaba, + ,0,FALSE,FALSE,M,8,FALSE,5,FALSE,a
+Shai Ben-David, - ,0,FALSE,FALSE,S,4,FALSE,9,FALSE,h
+Dan Roth, + ,0,FALSE,FALSE,D,3,FALSE,4,FALSE,a
+Lisa Hellerstein, + ,0,FALSE,FALSE,L,4,FALSE,11,FALSE,i
+Geoffrey Gordon, + ,0,FALSE,FALSE,G,8,FALSE,6,FALSE,e
+Paul Vitanyi, + ,0,FALSE,FALSE,P,4,FALSE,7,FALSE,a
+Anselm Blumer, - ,0,TRUE,FALSE,A,6,FALSE,6,TRUE,n
+Jeff Jackson, + ,0,FALSE,FALSE,J,4,FALSE,7,FALSE,e
+Steven W. Norton, - ,1,FALSE,FALSE,S,6,FALSE,6,TRUE,t
+R. Bharat Rao, - ,1,FALSE,FALSE,R,2,FALSE,3,FALSE,.
+Matthias Heger, + ,0,FALSE,FALSE,M,8,FALSE,5,FALSE,a
+Nicolo Cesa-Bianchi, + ,0,FALSE,FALSE,N,6,FALSE,12,FALSE,i
+David Montgomery, + ,0,FALSE,FALSE,D,5,FALSE,10,FALSE,a
+Patricia J. Riddle, + ,1,FALSE,FALSE,P,8,FALSE,6,FALSE,a
+J. Jeffrey Mahoney, - ,1,FALSE,FALSE,J,2,FALSE,7,FALSE,.
+Kazushi Ikeda, + ,0,FALSE,FALSE,K,7,FALSE,5,FALSE,a
+Thomas G. Dietterich, - ,1,FALSE,FALSE,T,6,FALSE,10,FALSE,h
+Pang-Chieh Chen, + ,0,FALSE,FALSE,P,10,FALSE,4,FALSE,a
+Paul Utgoff, + ,0,FALSE,FALSE,P,4,FALSE,6,FALSE,a
+Joseph O'Sullivan, + ,0,FALSE,FALSE,J,6,FALSE,10,FALSE,o
+Toshiyasu Matsushima, + ,0,FALSE,FALSE,T,9,FALSE,10,FALSE,o
+Timothy P. Barber, + ,1,FALSE,FALSE,T,7,FALSE,6,FALSE,i
+Phil Long, - ,0,FALSE,FALSE,P,4,FALSE,4,TRUE,h
+Tal Grossman, + ,0,FALSE,FALSE,T,3,FALSE,8,FALSE,a
+Donna Slonim, + ,0,FALSE,FALSE,D,5,FALSE,6,FALSE,o
+Tatsuo Unemi, + ,0,FALSE,FALSE,T,6,FALSE,5,FALSE,a
+Krishnan Pillaipakkamnatt, - ,0,FALSE,FALSE,K,8,FALSE,16,FALSE,r
+Lorenza Saitta, + ,0,FALSE,FALSE,L,7,FALSE,6,FALSE,o
+Usama Fayyad, - ,0,FALSE,FALSE,U,5,FALSE,6,FALSE,s
+Jude Shavlik, + ,0,FALSE,FALSE,J,4,FALSE,7,FALSE,u
+David Helmbold, + ,0,FALSE,FALSE,D,5,FALSE,8,FALSE,a
+Grigoris Karakoulas, - ,0,FALSE,FALSE,G,8,FALSE,10,FALSE,r
+Tom Hancock, + ,0,FALSE,FALSE,T,3,FALSE,7,FALSE,o
+Drago Indjic, - ,0,FALSE,FALSE,D,5,FALSE,6,FALSE,r
+Gary Weiss, + ,0,FALSE,FALSE,G,4,FALSE,5,FALSE,a
+Frank Stephan, - ,0,FALSE,FALSE,F,5,FALSE,7,FALSE,r
+Kenji Yamanishi, + ,0,FALSE,FALSE,K,5,FALSE,9,FALSE,e
+Wan P. Chiang, + ,1,FALSE,FALSE,W,3,FALSE,6,FALSE,a
+Yoram Singer, + ,0,FALSE,FALSE,Y,5,FALSE,6,FALSE,o
+Melinda T. Gervasio, + ,1,FALSE,FALSE,M,7,FALSE,8,FALSE,e
+Kate Goelz, + ,0,FALSE,FALSE,K,4,FALSE,5,FALSE,a
+Roni Khardon, + ,0,FALSE,FALSE,R,4,FALSE,7,FALSE,o
+Nikolay Nikolaev, + ,0,FALSE,FALSE,N,7,FALSE,8,FALSE,i
+George H. John, + ,1,FALSE,FALSE,G,6,FALSE,4,FALSE,e
+Diana Gordon, + ,0,FALSE,FALSE,D,5,FALSE,6,FALSE,i
+Claire Cardie, - ,0,FALSE,FALSE,C,6,TRUE,6,TRUE,l
+Moshe Koppel, + ,0,FALSE,FALSE,M,5,FALSE,6,FALSE,o
+Andy Bernard, + ,0,TRUE,FALSE,A,4,FALSE,7,FALSE,n
+Marcos Salganicoff, + ,0,FALSE,FALSE,M,6,FALSE,11,FALSE,a
+David W. Opitz, + ,1,FALSE,FALSE,D,5,FALSE,5,TRUE,a
+Mark Changizi, + ,0,FALSE,FALSE,M,4,FALSE,8,FALSE,a
+Lars Asker, + ,0,FALSE,FALSE,L,4,FALSE,5,FALSE,a
+Dana Ron, + ,0,FALSE,FALSE,D,4,FALSE,3,FALSE,a
+Andrey Burago, - ,0,TRUE,FALSE,A,6,FALSE,6,TRUE,n
+Eddy Mayoraz, - ,0,FALSE,FALSE,E,4,FALSE,7,FALSE,d
+Mark Schwabacher, + ,0,FALSE,FALSE,M,4,FALSE,11,FALSE,a
+Carl H. Smith, + ,1,FALSE,FALSE,C,4,TRUE,5,FALSE,a
+Wee Sun Lee, + ,1,FALSE,FALSE,W,3,FALSE,3,TRUE,e
+Mario Marchand, + ,0,FALSE,FALSE,M,5,FALSE,8,FALSE,a
+David Pierce, + ,0,FALSE,FALSE,D,5,FALSE,6,FALSE,a
+Dan Oblinger, + ,0,FALSE,FALSE,D,3,FALSE,8,FALSE,a
+Lyle H. Ungar, - ,1,FALSE,FALSE,L,4,FALSE,5,FALSE,y
+Hiroshi Tanaka, + ,0,FALSE,FALSE,H,7,FALSE,6,FALSE,i
+Johanne Morin, + ,0,FALSE,FALSE,J,7,FALSE,5,FALSE,o
+Thomas Wengerek, - ,0,FALSE,FALSE,T,6,FALSE,8,FALSE,h
+Mark W. Craven, + ,1,FALSE,FALSE,M,4,FALSE,6,FALSE,a
+Tom Fawcett, + ,0,FALSE,FALSE,T,3,FALSE,7,FALSE,o
+John R. Rose, + ,1,FALSE,FALSE,J,4,FALSE,4,TRUE,o
+Richard A. Caruana, + ,1,FALSE,FALSE,R,7,FALSE,7,TRUE,i
+Steven Salzberg, - ,0,FALSE,FALSE,S,6,FALSE,8,FALSE,t
+Barak A. Pearlmutter, + ,1,FALSE,TRUE,B,5,FALSE,11,FALSE,a
+Chris Darken, - ,0,FALSE,FALSE,C,5,TRUE,6,FALSE,h
+Judy A. Franklin, + ,1,FALSE,FALSE,J,4,FALSE,8,FALSE,u
+Xuemei Wang, + ,0,FALSE,FALSE,X,6,FALSE,4,FALSE,u
+Nitin Indurkhya, + ,0,FALSE,FALSE,N,5,FALSE,9,FALSE,i
+Oded Maron, - ,0,FALSE,FALSE,O,4,FALSE,5,FALSE,d
+Takefumi Yamazaki, + ,0,FALSE,FALSE,T,8,FALSE,8,TRUE,a
+Satinder Pal Singh, + ,1,FALSE,FALSE,S,8,FALSE,5,FALSE,a
+Ron Kohavi, + ,0,FALSE,FALSE,R,3,FALSE,6,FALSE,o
+Michael de la Maza, + ,2,FALSE,FALSE,M,7,FALSE,4,FALSE,i
+Robert Sloan, + ,0,FALSE,FALSE,R,6,FALSE,5,FALSE,o
+Chun-Nan Hsu, - ,0,FALSE,FALSE,C,8,TRUE,3,FALSE,h
+Daniel Kortenkamp, + ,0,FALSE,FALSE,D,6,FALSE,10,FALSE,a
+Ricard Gavalda, + ,0,FALSE,FALSE,R,6,FALSE,7,FALSE,i
+Joe Suzuki, + ,0,FALSE,FALSE,J,3,FALSE,6,FALSE,o
+James S. Royer, + ,1,FALSE,FALSE,J,5,FALSE,5,TRUE,a
+Jyrki Kivinen, - ,0,FALSE,FALSE,J,5,FALSE,7,FALSE,y
+Tapio Elomaa, + ,0,FALSE,FALSE,T,5,FALSE,6,FALSE,a
+Michael Redmond, + ,0,FALSE,FALSE,M,7,FALSE,7,TRUE,i
+Rich Maclin, + ,0,FALSE,FALSE,R,4,FALSE,6,FALSE,i
+Jiarong Hong, + ,0,FALSE,FALSE,J,7,FALSE,4,FALSE,i
+Janusz Wnek, + ,0,FALSE,FALSE,J,6,FALSE,4,FALSE,a
+David B. Skalak, + ,1,FALSE,FALSE,D,5,FALSE,6,FALSE,a
+Daniel Hennessy, + ,0,FALSE,FALSE,D,6,FALSE,8,FALSE,a
+David Cohn, + ,0,FALSE,FALSE,D,5,FALSE,4,FALSE,a
+Merrick L. Furst, + ,1,FALSE,FALSE,M,7,FALSE,5,FALSE,e
+Lindley Darden, + ,0,FALSE,FALSE,L,7,FALSE,6,FALSE,i
+Steve A. Chien, - ,1,FALSE,FALSE,S,5,FALSE,5,TRUE,t
+Wai Lam, + ,0,FALSE,FALSE,W,3,FALSE,3,TRUE,a
+Paul W. Goldberg, + ,1,FALSE,FALSE,P,4,FALSE,8,FALSE,a
+Stephen Muggleton, - ,0,FALSE,FALSE,S,7,FALSE,9,FALSE,t
+Jason Catlett, + ,0,FALSE,FALSE,J,5,FALSE,7,FALSE,a
+Justinian Rosca, + ,0,FALSE,FALSE,J,9,FALSE,5,FALSE,u
+Sreerama K. Murthy, - ,1,FALSE,FALSE,S,8,FALSE,6,FALSE,r
+Richard S. Sutton, + ,1,FALSE,FALSE,R,7,FALSE,6,FALSE,i
+Michael W. Barley, + ,1,FALSE,FALSE,M,7,FALSE,6,FALSE,i
+Leslie Grate, + ,0,FALSE,FALSE,L,6,FALSE,5,FALSE,e
+Nathalie Japkowicz, + ,0,FALSE,FALSE,N,8,FALSE,9,FALSE,a
+Randolph Jones, + ,0,FALSE,FALSE,R,8,FALSE,5,FALSE,a
+John Rachlin, + ,0,FALSE,FALSE,J,4,FALSE,7,FALSE,o
+Moshe Leshno, + ,0,FALSE,FALSE,M,5,FALSE,6,FALSE,o
+Emanuel Knill, - ,0,FALSE,FALSE,E,7,FALSE,5,FALSE,m
+Sholom Weiss, - ,0,FALSE,FALSE,S,6,FALSE,5,FALSE,h
+Darko Zupanic, + ,0,FALSE,FALSE,D,5,FALSE,7,FALSE,a
+Thomas G. Spalthoff, - ,1,FALSE,FALSE,T,6,FALSE,9,FALSE,h
+Michael Kearns, + ,0,FALSE,FALSE,M,7,FALSE,6,FALSE,i
+Holly Yanco, + ,0,FALSE,FALSE,H,5,FALSE,5,TRUE,o
+Olivier De Vel, - ,1,FALSE,FALSE,O,7,FALSE,3,FALSE,l
+Tom Bylander, + ,0,FALSE,FALSE,T,3,FALSE,8,FALSE,o
+Johannes Furnkranz, + ,0,FALSE,FALSE,J,8,FALSE,9,FALSE,o
+Pat Langley, + ,0,FALSE,FALSE,P,3,FALSE,7,FALSE,a
+Javed Aslam, + ,0,FALSE,FALSE,J,5,FALSE,5,TRUE,a
+Jean Gabriel Ganascia, + ,1,FALSE,FALSE,J,4,FALSE,8,FALSE,e
+Sean Slattery, + ,0,FALSE,FALSE,S,4,FALSE,8,FALSE,e
+Michael A. meystel, + ,1,FALSE,FALSE,M,7,FALSE,7,TRUE,i
+Brian D. Davidson, - ,1,FALSE,TRUE,B,5,FALSE,8,FALSE,r
+David Gillman, + ,0,FALSE,FALSE,D,5,FALSE,7,FALSE,a
+Matevz Kovacic, + ,0,FALSE,FALSE,M,6,FALSE,7,FALSE,a
+Bala Kalyanasundaram, + ,0,FALSE,TRUE,B,4,FALSE,15,FALSE,a
+Martin Kummer, + ,0,FALSE,FALSE,M,6,FALSE,6,TRUE,a
+Manfred Warmuth, + ,0,FALSE,FALSE,M,7,FALSE,7,TRUE,a
+David Mathias, + ,0,FALSE,FALSE,D,5,FALSE,7,FALSE,a
+Brian Tester, - ,0,FALSE,TRUE,B,5,FALSE,6,FALSE,r
+Nicolas Fiechter, + ,0,FALSE,FALSE,N,7,FALSE,8,FALSE,i
+Aurora Perez, + ,0,TRUE,FALSE,A,6,FALSE,5,FALSE,u
+Michael Scott, - ,0,FALSE,FALSE,M,7,FALSE,5,FALSE,i
+Naoki Abe,+ ,0,FALSE,FALSE,N,5,FALSE,3,FALSE,a
+Kimmen Sjolander, + ,0,FALSE,FALSE,K,6,FALSE,9,FALSE,i
+Jeffery Clouse, + ,0,FALSE,FALSE,J,7,FALSE,6,FALSE,e
+Robert P. Daley, + ,1,FALSE,FALSE,R,6,FALSE,5,FALSE,o
+William Gasarch, + ,0,FALSE,FALSE,W,7,FALSE,7,TRUE,i
+Reinhard Blasig, + ,0,FALSE,FALSE,R,8,FALSE,6,FALSE,e
+Malini Bhandaru, + ,0,FALSE,FALSE,M,6,FALSE,8,FALSE,a
+Robert Schapire, + ,0,FALSE,FALSE,R,6,FALSE,8,FALSE,o
+Gary M. Selzer, + ,1,FALSE,FALSE,G,4,FALSE,6,FALSE,a
+Clare Bates Congdon, - ,1,FALSE,FALSE,C,5,TRUE,7,FALSE,l
+Martinch Krikis, + ,0,FALSE,FALSE,M,8,FALSE,6,FALSE,a
+John Case, + ,0,FALSE,FALSE,J,4,FALSE,4,TRUE,o
+Lance Fortnow, + ,0,FALSE,FALSE,L,5,FALSE,7,FALSE,a
+Lorien Y. Pratt, + ,1,FALSE,FALSE,L,6,FALSE,5,FALSE,o
+Klaus P. Jantke, - ,1,FALSE,FALSE,K,5,FALSE,6,FALSE,l
+Haralabos Athanassiou, + ,0,FALSE,FALSE,H,9,FALSE,11,FALSE,a
+Bradley L. Whitehall, - ,1,FALSE,TRUE,B,7,FALSE,9,FALSE,r
+Sridhar Mahadevan, - ,0,FALSE,FALSE,S,7,FALSE,9,FALSE,r
+Craig Nevill-Manning, - ,0,FALSE,FALSE,C,5,TRUE,14,FALSE,r
+Paul Fischer, + ,0,FALSE,FALSE,P,4,FALSE,7,FALSE,a
+Hal Duncan, + ,0,FALSE,FALSE,H,3,FALSE,6,FALSE,a
+Von-Wun Soo, + ,0,FALSE,FALSE,V,7,FALSE,3,FALSE,o
+Bill Byrne, + ,0,FALSE,TRUE,B,4,FALSE,5,FALSE,i
+Myriam Abramson, - ,0,FALSE,FALSE,M,6,FALSE,8,FALSE,y
+Creed Bratton, + ,0,FALSE,FALSE,C,5,TRUE,7,FALSE,r
+Minoru Asada, + ,0,FALSE,FALSE,M,6,FALSE,5,FALSE,i
+Tom M. Mitchell, + ,1,FALSE,FALSE,T,3,FALSE,8,FALSE,o
+Jean-Daniel Zucker, + ,0,FALSE,FALSE,J,11,FALSE,6,FALSE,e
+Sonya Snedecor, + ,0,FALSE,FALSE,S,5,FALSE,8,FALSE,o
+Glenn Silverstein, - ,0,FALSE,FALSE,G,5,FALSE,11,FALSE,l
+Avrim Blum, - ,0,TRUE,FALSE,A,5,FALSE,4,FALSE,v
+Scott E. Decatur, - ,1,FALSE,FALSE,S,5,FALSE,7,FALSE,c
+Dana Angluin, + ,0,FALSE,FALSE,D,4,FALSE,7,FALSE,a
+Wolfgang Maass, + ,0,FALSE,FALSE,W,8,FALSE,5,FALSE,o
+Chidanand Apte, - ,0,FALSE,FALSE,C,9,TRUE,4,FALSE,h
+Marko Grobelnik, + ,0,FALSE,FALSE,M,5,FALSE,9,FALSE,a
+Mary Soon Lee, + ,1,FALSE,FALSE,M,4,FALSE,3,FALSE,a
+Zhixiang Chen, - ,0,FALSE,FALSE,Z,8,FALSE,4,FALSE,h
+Mona Singh, + ,0,FALSE,FALSE,M,4,FALSE,5,FALSE,o
+Justin Boyan, + ,0,FALSE,FALSE,J,6,FALSE,5,FALSE,u
+Daniel L. Silver, + ,1,FALSE,FALSE,D,6,FALSE,6,TRUE,a
+David W. Aha, + ,1,FALSE,FALSE,D,5,FALSE,3,FALSE,a
+Robert S. Roos, + ,1,FALSE,FALSE,R,6,FALSE,4,FALSE,o
+David Loewenstern, + ,0,FALSE,FALSE,D,5,FALSE,11,FALSE,a
+Eric Baum, - ,0,FALSE,FALSE,E,4,FALSE,4,TRUE,r
+John M. Zelle, + ,1,FALSE,FALSE,J,4,FALSE,5,FALSE,o
+Arun Sharma, - ,0,TRUE,FALSE,A,4,FALSE,6,FALSE,r
+Ronitt Rubinfeld, + ,0,FALSE,FALSE,R,6,FALSE,9,FALSE,o
+Thomas Ellman, - ,0,FALSE,FALSE,T,6,FALSE,6,TRUE,h
+Aaron Feigelson, + ,0,TRUE,FALSE,A,5,FALSE,9,FALSE,a
+Harris Drucker, + ,0,FALSE,FALSE,H,6,FALSE,7,FALSE,a
+Carla E. Brodley, + ,1,FALSE,FALSE,C,5,TRUE,7,FALSE,a
+Alexander M. Meystel, - ,1,TRUE,FALSE,A,9,FALSE,7,FALSE,l
+Maja Mataric, + ,0,FALSE,FALSE,M,4,FALSE,7,FALSE,a
+Leonard Pitt, + ,0,FALSE,FALSE,L,7,FALSE,4,FALSE,e
+Eyal Kushilevitz, - ,0,FALSE,FALSE,E,4,FALSE,11,FALSE,y
+Long-Ji Lin, + ,0,FALSE,FALSE,L,7,FALSE,3,FALSE,o
+Ameur Foued, - ,0,TRUE,FALSE,A,5,FALSE,5,TRUE,m
+Antoine Cornuejols, - ,0,TRUE,FALSE,A,7,FALSE,10,FALSE,n
+Welton Becket, + ,0,FALSE,FALSE,W,6,FALSE,6,TRUE,e
+Haym Hirsh, + ,0,FALSE,FALSE,H,4,FALSE,5,FALSE,a
+Hiroshi Motoda, + ,0,FALSE,FALSE,H,7,FALSE,6,FALSE,i
+John Fischer, + ,0,FALSE,FALSE,J,4,FALSE,7,FALSE,o
+George A. Drastal, + ,1,FALSE,FALSE,G,6,FALSE,7,FALSE,e
+William Cohen, + ,0,FALSE,FALSE,W,7,FALSE,5,FALSE,i
+Jing Peng, + ,0,FALSE,FALSE,J,4,FALSE,4,TRUE,i
+Alma Whitten, - ,0,TRUE,FALSE,A,4,FALSE,7,FALSE,l
+David Haussler, + ,0,FALSE,FALSE,D,5,FALSE,8,FALSE,a
+Joel Ratsaby, + ,0,FALSE,FALSE,J,4,FALSE,7,FALSE,o
+L. Thorne McCarty, - ,1,FALSE,FALSE,L,2,FALSE,7,FALSE,.
+Chen K. Tham, - ,1,FALSE,FALSE,C,4,TRUE,4,TRUE,h
+Kan Deng, + ,0,FALSE,FALSE,K,3,FALSE,4,FALSE,a
+Russell Greiner, + ,0,FALSE,FALSE,R,7,FALSE,7,TRUE,u
+Steffen Lange, - ,0,FALSE,FALSE,S,7,FALSE,5,FALSE,t
+Andrew W. Moore, - ,1,TRUE,FALSE,A,6,FALSE,5,FALSE,n
+Armand Prieditis, - ,0,TRUE,FALSE,A,6,FALSE,9,FALSE,r
+Dunja Mladenic, + ,0,FALSE,FALSE,D,5,FALSE,8,FALSE,u
+Jong-Hoon Oh, + ,0,FALSE,FALSE,J,9,FALSE,2,FALSE,o
+Ken Lang, + ,0,FALSE,FALSE,K,3,FALSE,4,FALSE,e
+Bernhard Pfahringer, + ,0,FALSE,TRUE,B,8,FALSE,10,FALSE,e
+Ronald L. Rivest, + ,1,FALSE,FALSE,R,6,FALSE,6,TRUE,o
+Robert Williamson, + ,0,FALSE,FALSE,R,6,FALSE,10,FALSE,o
+Stuart Russell, - ,0,FALSE,FALSE,S,6,FALSE,7,FALSE,t
+Andrew Y. Ng, - ,1,TRUE,FALSE,A,6,FALSE,2,FALSE,n
+Efim Kinber, - ,0,FALSE,FALSE,E,4,FALSE,6,FALSE,f
+David Finton, + ,0,FALSE,FALSE,D,5,FALSE,6,FALSE,a
+Mark Staley, + ,0,FALSE,FALSE,M,4,FALSE,6,FALSE,a
+Filippo Neri, + ,0,FALSE,FALSE,F,7,FALSE,4,FALSE,i
+Jonathan Hodgson, + ,0,FALSE,FALSE,J,8,FALSE,7,FALSE,o
+Dennis F. Kibler, + ,1,FALSE,FALSE,D,6,FALSE,6,TRUE,e
+Michael J. Donahue, + ,1,FALSE,FALSE,M,7,FALSE,7,TRUE,i

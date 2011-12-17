@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Portfolio 4 - Classification</title>
+		<meta name="author" content="Oliver"/>
+	</head>
+	<body>
+		<h1>Classification</h1>
+		<div id="Content">
+			<div id="Intro">
+				<h2>Why Do We Care?</h2>
+				<p>Classification is the process of putting objects into established groups depending on their properties and the generation of some model.  You may want to know whether Victor Frankenstein IV will vote Republican, Democrat, or Independent, if at all, so you can better assault him with campaign ads, or the most probable emails to be spam, so you can filter them away from your customers.</p>
+			</div> <!--end of intro-->
+			<div id="Info">
+				<h2>Background Info</h2>
+				<p>Classification models fall into one of two categories: supervised or unsupervised.  This page will cover the supervised models, which follow the process described below.  The unsupervised models are essentially <a href="../portfolio3/clustering.html">clusterers</a>, as they are unaware of the categories ahead of time and run without differentiating between test and training data as we will here.  But here we deal with supervised classifiers, which means we separate our known data into two categories, namely training data and test data.  The difference is that the training data is used only for generating a model used to make future classifications, and then the test data is fed into it to see if the model is working reasonably.</p>
+				<p>Classifiers can be either descriptive, explaining which features are important to be in a category, or predictive, allowing us to make educated guesses about the categorization of future data objects.</p>
+			</div> <!--end of info-->
+			<div id="Steps">
+				<h2>Classification Process</h2>
+				<p>First you should separate your known records into training and test data.  Then use some algorithm to build a model from the training data (although if you're KNN, you might be a lazy learner and slack on that a little!).  Test that the model works correctly on the test data, and you might find that you need to make adjustments.  Go do so, and test again, repeating this process of iterative development until your model is making good predictions.  But be careful not to make it too perfect, and thus not able to tolerate real world data.  This is called model overfitting.  For example, adding a "oh, if the year is 1492, and I'm on a boat, and I speak Spanish, and it's before October, then my name is Christopher" rule is probably too specific and won't help with <em>real</em> classification, even if it does get the test Christopher Columbus data correct.  Once you're reasonably confident that your model is making good predictions on the training data, send in the test data.  If you're really inspired, you could even mix up the two groups (training/test data) a bit and repeat several times, a process known as cross-fold validation.  Once you're certain the test data is also being predicted correctly (by the model created by the training data), you can start sending real, fresh data into the model and be astonished at its predictive power!</p>
+			</div> <!--end of intro-->
+			<div id="Algorithms">
+				<h2>How Do We Do It?</h2>
+				<div id="DecisionTree">
+					<h3>Decision Tree</h3>
+					<p>I almost want to say that the best way to understand a decision tree is just to play 20 questions.  So right now, go play it at <a href="http://www.20q.net">20q.net</a>.  What the game is doing is asking a series of strategic questions that will narrow down the field to hopefully just one answer.  Now the website given is a bit more complex, but it's a great, addicting example of what is probably mostly a decision tree behind the scenes.</p>
+					<p>The only question about the decision tree is how to decide which questions to ask in which order.  Although we could go in depth about Hunt's algorithm and other approaches, the concept is actually quite simple: Choose the question that will create child scenarios that are the most pure.</p>
+					<p>For example, let's you have 10 cats and 10 dogs and can ask two different questions:</p>
+					<ul>
+						<li>Question 1: Results in a group of 3 cats and 3 dogs and a group of 7 cats and 7 dogs</li>
+						<li>Question 2: Results in a group of 9 cats and 1 dog and a group of 9 dogs and 1 cat</li>
+					</ul>
+					<p>Which question should you ask?  It's clear that the second one is better.  The reason is that the groups created by the end of it are more pure than with the other question.  Further, it's important that the future groups are <em>more</em> pure than the current group, or you shouldn't ask any question at all.</p>
+					<p>The only thing left to consider is the stopping condition.  In a nutshell, stop when the purity increase is too minor to warrant more processing time, or takes you backwards.  You might just need to live with a little error.</p>
+					<p>Note that decision trees are very susceptible to model overfitting, so it's important to do some cross-validation and not require too much perfection.  Slightly impure groups is not the end of the world.</p>
+				</div> <!-- end of DecisionTree-->
+				<div id="KNN">
+					<h3>K Nearest Neighbors</h3>
+					<p>K Nearest Neighbors (KNN, not to be confused with ANN) is a lazy classifier, which means in part that it waits as long as it can to make decisions.  In fact, it never comes up with a model at all!  It takes the training data and does nothing with it at first, but instead, when given a test data object, it uses some similarity metric and finds that object's similarity to each of the training points.  Then it sorts all the similarities and takes the K that are closest, where K is a parameter that you set ahead of time.  So now we have K objects that are deemed similar to the input.  All that's left is to declare that the most common element is the best guess for the new one!  (Or, as I did for <a href="../portfolio9/2011kddcup.html">project 9</a>, you could average the K neighbors together.)</p>
+					<p>On the bright side, KNN is very easy to understand and visualize, at least in low dimensions.  It can also do a reasonably good job at simple data sets.  However, as I also discovered on project 9, it's extremely computationally heavy as every single new item needs to be compared to every other item.  It is also susceptible to noise if your new point is too far from the main clusters.  Finally, there's no simple model to evaluate that it's doing its job correctly or even to help you visualize its behavior.</p>
+				</div> <!-- end of KNN"-->
+				<div id="ANN">
+					<h3>Artificial Neural Network</h3>
+					<p>The ANN suffers from some of the same problems, as it can't be visualized and has no model you can look at.  However, there is a model, but it's as complex as your brain is!  Basically an ANN takes in a bunch of inputs and weights them into an output.  Just as the brain is millions of neurons connected together, we have a lot of artificial neurons.  The input neurons in the ANN receive a signal and send it on, adjusted by some fractional weight, to a hidden layer of multiple neurons.  They also send it to some other set of output neurons, again adjusted by a fractional weight.  Which neurons are connected can be configured, and if the result is deemed poor, the network will backpropogate changes to the weightings.</p>
+					
+					<p>If it sounds complicated, that's because it is, just like your brain!  I highly recommend <a href="http://www.informatics.sussex.ac.uk/users/davidy/fcs/notes.pdf">this paper</a> for far more information, along with looking at my <a href="annImplemtation.zip">attached</a> implementation.</p>
+				</div> <!-- end of ANN-->
+			</div> <!-- end of algorithms-->
+		</div> <!--end of content-->
+		<div class="MoreInfo">
+			<h2>More Information</h2>
+			<p>See chapter 4 of <em>Introduction to Data Mining</em> by Tan, Steinbach, and Kumar, 2006.</p>
+		</div> <!--end of MoreInfo-->
+		<div class="Copyright">
+			<p>&copy; 2011 by Oliver Chase. All rights reserved.</p>
+		</div>
+	</body>
+</html>

@@ -132,7 +132,483 @@
 		return ratingSum / numTracksToUse.to_f
 	  end
 				</pre>
-				<p>So how did the predictions work?  Not well.  The default 50 ratings are far too prevalent for the reasons described before.  I think the problem would go away partially with a more full data set.  We need users to rate more material so we can make the necessary interconnections.  (Maybe this is why Netflix is always suggesting we rate more films!)  Luckily this is just a practice exercise and the real participants in the contests had months to refine their techniques.  But there are a few cases (albums and tracks) where my results are interestingly close to the validation data’s correct answers.  My results are inserted below in case you enjoy pain enough to read them.  I hope there is a more efficient way to do the work I’ve described, let alone expand upon it, because just this took about five hours for my computer to crunch.  Overall, it’s a relatively fun project, but one that really does deserve a competition of several months to do well.</p>
+				<p>So how did the predictions work?  Not well.  The default 50 ratings are far too prevalent for the reasons described before.  I think the problem would go away partially with a more full data set.  We need users to rate more material so we can make the necessary interconnections.  (Maybe this is why Netflix is always suggesting we rate more films!)  Luckily this is just a practice exercise and the real participants in the contests had months to refine their techniques.  But there are a few cases (albums and tracks) where my results are interestingly close to the validation data’s correct answers.  Finally, I noticed at the end that the training data was inserted twice, so it probably is having twice the effect it should.  It takes so long to run, however, that I just left it alone.  My results are inserted below in case you enjoy pain enough to read them.  I hope there is a more efficient way to do the work I’ve described, let alone expand upon it, because just this took about five hours for my computer to crunch.  Overall, it’s a relatively fun project, but one that really does deserve a competition of several months to do well.</p>
+				<pre>
+				Let's try to confirm existing ratings.
+User 0, Album 540429, Predicted: 0.0, should be 70
+User 0, Track 554898, Predicted: 0.0, should be 90
+User 0, Artist 470288, Predicted: 50, should be 70
+User 0, Artist 163101, Predicted: 50, should be 70
+User 1, Artist 607946, Predicted: 50, should be 90
+User 1, Artist 608376, Predicted: 50, should be 90
+User 1, Artist 609785, Predicted: 50, should be 90
+User 1, Artist 612520, Predicted: 50, should be 90
+User 2, Genre 435836, Predicted: 50, should be 0
+User 2, Genre 475026, Predicted: 50, should be 0
+User 2, Genre 513664, Predicted: 50, should be 0
+User 2, Genre 514926, Predicted: 50, should be 0
+User 3, Artist 569455, Predicted: 50, should be 90
+User 3, Artist 614243, Predicted: 50, should be 90
+User 3, Track 398019, Predicted: 0.0, should be 60
+User 3, Track 62106, Predicted: 0.0, should be 91
+User 4, Artist 597327, Predicted: 80.0, should be 80
+User 4, Artist 131832, Predicted: 60.0, should be 40
+User 4, Track 540013, Predicted: 56.0, should be 60
+User 4, Track 31744, Predicted: 56.0, should be 60
+User 5, Album 232303, Predicted: 22.0, should be 30
+User 5, Track 286037, Predicted: 40.0, should be 90
+User 5, Album 310639, Predicted: 22.0, should be 50
+User 5, Artist 311811, Predicted: 70.0, should be 90
+User 6, Album 255923, Predicted: 56.0, should be 0
+User 6, Track 568090, Predicted: 58.33333333333332, should 
+
+be 0
+User 6, Artist 618422, Predicted: 0.0, should be 0
+User 6, Album 33551, Predicted: 56.0, should be 50
+User 7, Artist 222533, Predicted: 50, should be 50
+User 7, Artist 451800, Predicted: 0.0, should be 30
+User 7, Track 478554, Predicted: 0.0, should be 30
+User 7, Track 509510, Predicted: 0.0, should be 0
+User 8, Artist 489371, Predicted: 50, should be 90
+User 8, Artist 503258, Predicted: 50, should be 90
+User 8, Artist 504528, Predicted: 50, should be 90
+User 8, Artist 532453, Predicted: 50, should be 90
+User 9, Artist 504528, Predicted: 50, should be 90
+User 9, Genre 509188, Predicted: 50, should be 80
+User 9, Genre 517337, Predicted: 50, should be 80
+User 9, Genre 523223, Predicted: 50, should be 80
+User 10, Genre 354105, Predicted: 50, should be 80
+User 10, Artist 386899, Predicted: 50, should be 90
+User 10, Genre 390473, Predicted: 50, should be 80
+User 10, Artist 402723, Predicted: 50, should be 90
+User 11, Artist 523835, Predicted: 50.0, should be 50
+User 11, Track 2384, Predicted: 81.81818181818181, should be 
+
+50
+User 11, Artist 365958, Predicted: 50.0, should be 50
+User 11, Artist 257310, Predicted: 50, should be 50
+User 12, Track 406621, Predicted: 84.375, should be 90
+User 12, Track 524453, Predicted: 84.375, should be 90
+User 12, Track 77729, Predicted: 84.375, should be 90
+User 12, Track 346476, Predicted: 84.375, should be 90
+User 13, Artist 521255, Predicted: 50, should be 90
+User 13, Artist 532569, Predicted: 50, should be 90
+User 13, Artist 539126, Predicted: 50, should be 90
+User 13, Artist 541988, Predicted: 50, should be 90
+User 14, Track 320631, Predicted: 72.0, should be 0
+User 14, Track 429897, Predicted: 72.0, should be 0
+User 14, Artist 430276, Predicted: 0.0, should be 0
+User 14, Album 539869, Predicted: 36.0, should be 0
+User 15, Track 107666, Predicted: 64.0, should be 0
+User 15, Track 460326, Predicted: 64.0, should be 90
+User 15, Artist 507010, Predicted: 90.0, should be 90
+User 15, Artist 283179, Predicted: 50, should be 90
+User 16, Artist 61720, Predicted: 50, should be 90
+User 16, Artist 182140, Predicted: 50, should be 90
+User 16, Artist 78051, Predicted: 50, should be 90
+User 16, Artist 189820, Predicted: 50, should be 90
+User 17, Artist 558154, Predicted: 50, should be 90
+User 17, Artist 567378, Predicted: 50, should be 90
+User 17, Genre 600770, Predicted: 50, should be 80
+User 17, Artist 131263, Predicted: 50, should be 90
+User 18, Track 333410, Predicted: 40.90909090909091, should 
+
+be 70
+User 18, Track 91364, Predicted: 40.90909090909091, should 
+
+be 70
+User 18, Track 5172, Predicted: 40.90909090909091, should be 
+
+90
+User 18, Artist 431048, Predicted: 50, should be 90
+User 19, Artist 502177, Predicted: 50, should be 90
+User 19, Genre 513664, Predicted: 50, should be 80
+User 19, Artist 514730, Predicted: 50, should be 90
+User 19, Genre 523223, Predicted: 50, should be 80
+User 20, Artist 405897, Predicted: 50, should be 90
+User 20, Artist 440749, Predicted: 50, should be 90
+User 20, Artist 452599, Predicted: 50, should be 90
+User 20, Artist 457354, Predicted: 50, should be 90
+User 21, Artist 470288, Predicted: 90.0, should be 90
+User 21, Track 525825, Predicted: 73.17073170731706, should 
+
+be 90
+User 21, Track 163813, Predicted: 73.17073170731706, should 
+
+be 70
+User 21, Album 367130, Predicted: 63.414634146341456, should 
+
+be 90
+User 22, Track 218271, Predicted: 0.0, should be 90
+User 22, Album 264265, Predicted: 0.0, should be 90
+User 22, Album 328326, Predicted: 0.0, should be 90
+User 22, Track 434413, Predicted: 0.0, should be 90
+User 23, Track 92538, Predicted: 47.368421052631575, should 
+
+be 90
+User 23, Album 478757, Predicted: 72.97297297297297, should 
+
+be 90
+User 23, Artist 556366, Predicted: 0.0, should be 90
+User 23, Album 477578, Predicted: 72.97297297297297, should 
+
+be 90
+User 24, Artist 592747, Predicted: 50, should be 70
+User 24, Artist 192632, Predicted: 50, should be 90
+User 24, Artist 311998, Predicted: 50, should be 70
+User 24, Artist 366639, Predicted: 50, should be 90
+User 25, Genre 538823, Predicted: 50, should be 80
+User 25, Artist 540934, Predicted: 50, should be 90
+User 25, Artist 553257, Predicted: 50, should be 90
+User 25, Genre 556298, Predicted: 50, should be 80
+User 26, Artist 541171, Predicted: 50, should be 90
+User 26, Artist 567726, Predicted: 50, should be 90
+User 26, Artist 569179, Predicted: 50, should be 90
+User 26, Artist 596241, Predicted: 50, should be 90
+User 27, Artist 280997, Predicted: 50.0, should be 50
+User 27, Artist 26862, Predicted: 0.0, should be 0
+User 27, Album 40994, Predicted: 85.71428571428571, should 
+
+be 0
+User 27, Track 612847, Predicted: 60.0, should be 0
+User 28, Artist 503258, Predicted: 50, should be 90
+User 28, Artist 609785, Predicted: 50, should be 90
+User 28, Album 239251, Predicted: 0.0, should be 50
+User 28, Track 535309, Predicted: 0.0, should be 50
+User 29, Track 191936, Predicted: 34.21052631578947, should 
+
+be 50
+User 29, Track 350355, Predicted: 34.21052631578947, should 
+
+be 50
+User 29, Track 461783, Predicted: 34.21052631578947, should 
+
+be 50
+User 29, Track 92088, Predicted: 34.21052631578947, should 
+
+be 90
+User 30, Genre 582591, Predicted: 50, should be 80
+User 30, Genre 591461, Predicted: 50, should be 80
+User 30, Artist 613219, Predicted: 50, should be 90
+User 30, Artist 199467, Predicted: 50, should be 100
+User 31, Artist 136867, Predicted: 50, should be 90
+User 31, Artist 340873, Predicted: 50, should be 70
+User 31, Artist 141597, Predicted: 50, should be 70
+User 31, Artist 569396, Predicted: 50, should be 90
+User 32, Album 186216, Predicted: 28.0, should be 30
+User 32, Artist 268443, Predicted: 50, should be 30
+User 32, Artist 301986, Predicted: 0.0, should be 0
+User 32, Track 309917, Predicted: 10.0, should be 50
+User 33, Track 347177, Predicted: 32.0, should be 70
+User 33, Album 118689, Predicted: 50.0, should be 70
+User 33, Track 146931, Predicted: 32.0, should be 70
+User 33, Track 53487, Predicted: 32.0, should be 70
+User 34, Track 461319, Predicted: 0.0, should be 0
+User 34, Track 487413, Predicted: 0.0, should be 0
+User 34, Track 416005, Predicted: 0.0, should be 0
+User 34, Track 265809, Predicted: 0.0, should be 0
+User 35, Artist 486428, Predicted: 70.0, should be 90
+User 35, Artist 208781, Predicted: 70.0, should be 90
+User 35, Track 241086, Predicted: 50.0, should be 70
+User 35, Track 151356, Predicted: 50.0, should be 90
+User 36, Track 355789, Predicted: 0.0, should be 89
+User 36, Track 596702, Predicted: 0.0, should be 89
+User 36, Track 427711, Predicted: 0.0, should be 0
+User 36, Track 287673, Predicted: 0.0, should be 0
+User 37, Track 473704, Predicted: 53.6, should be 90
+User 37, Album 47401, Predicted: 80.0, should be 90
+User 37, Track 567990, Predicted: 53.6, should be 90
+User 37, Track 207903, Predicted: 53.6, should be 50
+User 38, Artist 436056, Predicted: 50, should be 90
+User 38, Artist 459622, Predicted: 50, should be 90
+User 38, Artist 490684, Predicted: 50, should be 90
+User 38, Artist 492607, Predicted: 50, should be 90
+User 39, Track 301109, Predicted: 12.0, should be 50
+User 39, Track 328454, Predicted: 12.0, should be 30
+User 39, Artist 334079, Predicted: 80.0, should be 90
+User 39, Track 372099, Predicted: 12.0, should be 30
+User 40, Album 324656, Predicted: 39.6, should be 30
+User 40, Album 50842, Predicted: 39.6, should be 30
+User 40, Track 107585, Predicted: 73.6, should be 0
+User 40, Artist 362743, Predicted: 15.0, should be 30
+User 41, Track 493765, Predicted: 0.0, should be 0
+User 41, Track 599442, Predicted: 0.0, should be 0
+User 41, Track 62106, Predicted: 0.0, should be 0
+User 41, Track 587372, Predicted: 0.0, should be 0
+User 42, Track 355132, Predicted: 36.0, should be 90
+User 42, Track 247796, Predicted: 36.0, should be 90
+User 42, Album 517703, Predicted: 0.0, should be 90
+User 42, Track 488024, Predicted: 36.0, should be 90
+User 43, Track 272262, Predicted: 0.0, should be 70
+User 43, Track 368693, Predicted: 0.0, should be 70
+User 43, Album 94586, Predicted: 0.0, should be 70
+User 43, Artist 243499, Predicted: 50, should be 0
+Time to make some predictions!!!
+User 0, Artist 550452, Predicted: 50
+User 0, Artist 323933, Predicted: 50
+User 0, Artist 159248, Predicted: 50
+User 0, Artist 554099, Predicted: 50
+User 0, Artist 70896, Predicted: 50
+User 0, Artist 518385, Predicted: 50
+User 1, Artist 614243, Predicted: 50
+User 1, Artist 616649, Predicted: 50
+User 1, Artist 617646, Predicted: 50
+User 1, Artist 620594, Predicted: 50
+User 1, Artist 622325, Predicted: 50
+User 1, Artist 623778, Predicted: 50
+User 2, Genre 521716, Predicted: 50
+User 2, Genre 531386, Predicted: 50
+User 2, Genre 534002, Predicted: 50
+User 2, Genre 602548, Predicted: 50
+User 2, Artist 297989, Predicted: 100.0
+User 2, Artist 532569, Predicted: 50
+User 3, Track 266898, Predicted: 0.0
+User 3, Track 577089, Predicted: 0.0
+User 3, Track 418340, Predicted: 0.0
+User 3, Artist 489371, Predicted: 50
+User 3, Artist 541471, Predicted: 50
+User 3, Artist 230010, Predicted: 50
+User 4, Artist 160409, Predicted: 60.0
+User 4, Artist 309265, Predicted: 50
+User 4, Track 566574, Predicted: 56.0
+User 4, Artist 94767, Predicted: 50
+User 4, Artist 617491, Predicted: 50
+User 4, Artist 561044, Predicted: 50
+User 5, Album 55372, Predicted: 22.0
+User 5, Artist 568050, Predicted: 50
+User 5, Track 614805, Predicted: 40.0
+User 5, Track 374622, Predicted: 40.0
+User 5, Artist 390355, Predicted: 50
+User 5, Album 600781, Predicted: 22.0
+User 6, Track 34428, Predicted: 58.33333333333332
+User 6, Artist 370386, Predicted: 50.0
+User 6, Artist 614925, Predicted: 50
+User 6, Track 248723, Predicted: 58.33333333333332
+User 6, Album 252962, Predicted: 56.0
+User 6, Artist 504528, Predicted: 50
+User 7, Track 591369, Predicted: 0.0
+User 7, Artist 28621, Predicted: 50
+User 7, Track 40189, Predicted: 0.0
+User 7, Track 434891, Predicted: 0.0
+User 7, Track 80657, Predicted: 0.0
+User 7, Track 532790, Predicted: 0.0
+User 8, Artist 532569, Predicted: 50
+User 8, Artist 558154, Predicted: 50
+User 8, Artist 569179, Predicted: 50
+User 8, Artist 574204, Predicted: 50
+User 8, Artist 622325, Predicted: 50
+User 8, Artist 213829, Predicted: 50
+User 9, Genre 531386, Predicted: 50
+User 9, Artist 532569, Predicted: 50
+User 9, Artist 592747, Predicted: 50
+User 9, Artist 602602, Predicted: 50
+User 9, Artist 614925, Predicted: 50
+User 9, Artist 622325, Predicted: 50
+User 10, Artist 453396, Predicted: 50
+User 10, Artist 587636, Predicted: 50
+User 10, Genre 591461, Predicted: 50
+User 10, Artist 596241, Predicted: 50
+User 10, Artist 612520, Predicted: 50
+User 10, Artist 616649, Predicted: 50
+User 11, Track 533053, Predicted: 81.81818181818181
+User 11, Track 2273, Predicted: 81.81818181818181
+User 11, Track 117627, Predicted: 81.81818181818181
+User 11, Track 436796, Predicted: 81.81818181818181
+User 11, Track 613923, Predicted: 81.81818181818181
+User 11, Track 359283, Predicted: 81.81818181818181
+User 12, Track 275010, Predicted: 84.375
+User 12, Track 46030, Predicted: 84.375
+User 12, Track 29235, Predicted: 84.375
+User 12, Track 498179, Predicted: 84.375
+User 12, Track 556541, Predicted: 84.375
+User 12, Genre 558814, Predicted: 50
+User 13, Artist 546992, Predicted: 50
+User 13, Artist 567726, Predicted: 50
+User 13, Artist 583090, Predicted: 50
+User 13, Artist 587636, Predicted: 50
+User 13, Artist 616649, Predicted: 50
+User 13, Artist 617646, Predicted: 50
+User 14, Track 543905, Predicted: 72.0
+User 14, Album 572538, Predicted: 36.0
+User 14, Track 28590, Predicted: 72.0
+User 14, Album 268594, Predicted: 36.0
+User 14, Track 308881, Predicted: 72.0
+User 14, Artist 334831, Predicted: 50
+User 15, Track 281112, Predicted: 64.0
+User 15, Track 309256, Predicted: 64.0
+User 15, Artist 496762, Predicted: 50
+User 15, Artist 614925, Predicted: 50
+User 15, Artist 165824, Predicted: 50
+User 15, Artist 367313, Predicted: 50
+User 16, Artist 550452, Predicted: 50
+User 16, Artist 56437, Predicted: 50
+User 16, Artist 13379, Predicted: 50
+User 16, Artist 39046, Predicted: 50
+User 16, Artist 405897, Predicted: 50
+User 16, Artist 267723, Predicted: 50
+User 17, Track 25205, Predicted: 50
+User 17, Track 103410, Predicted: 50
+User 17, Track 624550, Predicted: 50
+User 17, Track 338242, Predicted: 50
+User 17, Artist 25311, Predicted: 50
+User 17, Track 47310, Predicted: 50
+User 18, Artist 359811, Predicted: 50
+User 18, Track 576535, Predicted: 40.90909090909091
+User 18, Track 260310, Predicted: 40.90909090909091
+User 18, Track 49509, Predicted: 40.90909090909091
+User 18, Artist 206975, Predicted: 50
+User 18, Track 252459, Predicted: 40.90909090909091
+User 19, Artist 539904, Predicted: 50
+User 19, Artist 548098, Predicted: 50
+User 19, Artist 592747, Predicted: 50
+User 19, Genre 600770, Predicted: 50
+User 19, Artist 608376, Predicted: 50
+User 19, Artist 622325, Predicted: 50
+User 20, Artist 489371, Predicted: 50
+User 20, Artist 517526, Predicted: 50
+User 20, Genre 538823, Predicted: 50
+User 20, Artist 540934, Predicted: 50
+User 20, Genre 600770, Predicted: 50
+User 20, Artist 607946, Predicted: 50
+User 21, Track 116469, Predicted: 73.17073170731706
+User 21, Track 33730, Predicted: 73.17073170731706
+User 21, Album 100025, Predicted: 63.414634146341456
+User 21, Album 95970, Predicted: 63.414634146341456
+User 21, Artist 267723, Predicted: 50
+User 21, Track 449769, Predicted: 73.17073170731706
+User 22, Artist 559390, Predicted: 90.0
+User 22, Artist 152442, Predicted: 50
+User 22, Album 182003, Predicted: 0.0
+User 22, Track 225679, Predicted: 0.0
+User 22, Track 41414, Predicted: 0.0
+User 22, Genre 106447, Predicted: 50
+User 23, Track 540166, Predicted: 47.368421052631575
+User 23, Track 389637, Predicted: 47.368421052631575
+User 23, Track 44531, Predicted: 47.368421052631575
+User 23, Track 130559, Predicted: 47.368421052631575
+User 23, Track 173049, Predicted: 47.368421052631575
+User 23, Track 48550, Predicted: 47.368421052631575
+User 24, Artist 459622, Predicted: 50
+User 24, Artist 112126, Predicted: 50
+User 24, Artist 614925, Predicted: 50
+User 24, Artist 489371, Predicted: 50
+User 24, Artist 85222, Predicted: 50
+User 24, Artist 181089, Predicted: 50
+User 25, Genre 563692, Predicted: 50
+User 25, Genre 582591, Predicted: 50
+User 25, Genre 600770, Predicted: 50
+User 25, Artist 607946, Predicted: 50
+User 25, Track 274703, Predicted: 50
+User 25, Track 362307, Predicted: 50
+User 26, Artist 614243, Predicted: 50
+User 26, Artist 617646, Predicted: 50
+User 26, Artist 622325, Predicted: 50
+User 26, Artist 55629, Predicted: 50
+User 26, Track 363904, Predicted: 50
+User 26, Album 373402, Predicted: 50
+User 27, Album 169081, Predicted: 85.71428571428571
+User 27, Artist 386683, Predicted: 50
+User 27, Artist 224051, Predicted: 50
+User 27, Artist 436056, Predicted: 100.0
+User 27, Artist 473055, Predicted: 50
+User 27, Artist 26226, Predicted: 50
+User 28, Track 75707, Predicted: 0.0
+User 28, Artist 397543, Predicted: 50
+User 28, Track 298685, Predicted: 0.0
+User 28, Track 75410, Predicted: 0.0
+User 28, Album 567631, Predicted: 0.0
+User 28, Track 578903, Predicted: 0.0
+User 29, Track 184754, Predicted: 34.21052631578947
+User 29, Artist 556366, Predicted: 90.0
+User 29, Track 238646, Predicted: 34.21052631578947
+User 29, Track 7876, Predicted: 34.21052631578947
+User 29, Track 302000, Predicted: 34.21052631578947
+User 29, Artist 569396, Predicted: 50
+User 30, Artist 267846, Predicted: 50
+User 30, Artist 467178, Predicted: 50
+User 30, Track 444949, Predicted: 50
+User 30, Track 489457, Predicted: 50
+User 30, Track 529957, Predicted: 50
+User 30, Track 552786, Predicted: 50
+User 31, Artist 123929, Predicted: 50
+User 31, Artist 98718, Predicted: 50
+User 31, Artist 195434, Predicted: 50
+User 31, Artist 588686, Predicted: 50
+User 31, Artist 604347, Predicted: 50
+User 31, Artist 17497, Predicted: 50
+User 32, Track 358441, Predicted: 10.0
+User 32, Album 440694, Predicted: 28.0
+User 32, Track 577474, Predicted: 10.0
+User 32, Track 266281, Predicted: 10.0
+User 32, Artist 371598, Predicted: 50
+User 32, Album 564115, Predicted: 28.0
+User 33, Track 75943, Predicted: 32.0
+User 33, Track 355155, Predicted: 32.0
+User 33, Album 564115, Predicted: 50.0
+User 33, Track 364683, Predicted: 32.0
+User 33, Artist 437608, Predicted: 50
+User 33, Album 603145, Predicted: 50.0
+User 34, Track 1188, Predicted: 0.0
+User 34, Track 4132, Predicted: 0.0
+User 34, Track 30125, Predicted: 0.0
+User 34, Track 36422, Predicted: 0.0
+User 34, Track 421158, Predicted: 0.0
+User 34, Track 482854, Predicted: 0.0
+User 35, Artist 529098, Predicted: 50
+User 35, Artist 559371, Predicted: 50
+User 35, Artist 237542, Predicted: 50
+User 35, Track 549463, Predicted: 50.0
+User 35, Artist 381626, Predicted: 50
+User 35, Track 407756, Predicted: 50.0
+User 36, Track 571905, Predicted: 0.0
+User 36, Track 198370, Predicted: 0.0
+User 36, Track 347177, Predicted: 0.0
+User 36, Track 27598, Predicted: 0.0
+User 36, Track 551806, Predicted: 0.0
+User 36, Track 193586, Predicted: 0.0
+User 37, Track 169627, Predicted: 53.6
+User 37, Track 130254, Predicted: 53.6
+User 37, Album 141393, Predicted: 80.0
+User 37, Track 469645, Predicted: 53.6
+User 37, Track 84209, Predicted: 53.6
+User 37, Track 280641, Predicted: 53.6
+User 38, Artist 504528, Predicted: 50
+User 38, Artist 517718, Predicted: 50
+User 38, Artist 532569, Predicted: 50
+User 38, Artist 614243, Predicted: 50
+User 38, Artist 614925, Predicted: 50
+User 38, Artist 622325, Predicted: 50
+User 39, Artist 614925, Predicted: 53.33333333333333
+User 39, Artist 34525, Predicted: 50
+User 39, Track 540166, Predicted: 12.0
+User 39, Track 327744, Predicted: 12.0
+User 39, Track 9986, Predicted: 12.0
+User 39, Artist 536930, Predicted: 50
+User 40, Artist 328269, Predicted: 50
+User 40, Track 195544, Predicted: 73.6
+User 40, Track 186013, Predicted: 73.6
+User 40, Artist 213529, Predicted: 50
+User 40, Album 257054, Predicted: 39.6
+User 40, Track 509660, Predicted: 73.6
+User 41, Track 498148, Predicted: 0.0
+User 41, Track 113311, Predicted: 0.0
+User 41, Track 571579, Predicted: 0.0
+User 41, Album 199025, Predicted: 50
+User 41, Artist 375693, Predicted: 50
+User 41, Track 591163, Predicted: 0.0
+User 42, Track 134908, Predicted: 36.0
+User 42, Track 303711, Predicted: 36.0
+User 42, Artist 3669, Predicted: 90.0
+User 42, Album 458099, Predicted: 0.0
+User 42, Track 82555, Predicted: 36.0
+User 42, Artist 248920, Predicted: 50
+User 43, Track 309068, Predicted: 0.0
+User 43, Album 328957, Predicted: 0.0
+User 43, Track 376863, Predicted: 0.0
+User 43, Artist 60117, Predicted: 50
+User 43, Track 409361, Predicted: 0.0
+User 43, Artist 581975, Predicted: 50
+				</pre>
 			</div><!-- end of writeup-->
 			<div id="Results">
 			<p>

@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Portfolio 5 - Association Analysis</title>
+		<meta name="author" content="Oliver"/>
+	</head>
+	<body>
+		<h1>Association Analysis</h1>
+		<div id="Content">
+			<div id="ItemsetGeneration">
+				<h2>Frequent itemset generation</h2>
+				<p>The most important step in association analysis is generating the frequent itemsets.  Once we have them it's surprisingly easy to generate the rules.  So how do we do it?</p>
+				<p>First, define a minimum support count (the number of times you expect the itemset to be found in your data).  Then for each attribute in our dataset, we check to see if that item alone can produce a high enough support.  If not, we can eliminate it by the <em>apriori principle</em>, which says that AL subsets of frequent itemsets are themselves frequent itemsets.  The converse is also true: no infrequent itemset can be contained in any frequent itemset.  Thus we only need to look at combinations of the frequent 1-itemsets and their combinations, and so on.  There's a couple approaches to this, but using the F_k-1 X F_1 approach, any time you want to generate frequent K-itemsets you just check all the combinations of the itemsets that are one smaller with all the possible itemsets of size 1.</p>
+				<p>For example, to generate 4-itemsets, take your frequent 3-itemsets (ABC, BAD) and cross them with your frequent 1-itemsets (A, B, C, D, E).  The results are ABCA, ABCB, ABCC, ABCD, ABCE, BADA, BADB, BADC, BADD, and BADE.  Most of those are redundant, so we really get ABCD, ABCE, and BADE.  Finally, we check these itemsets to see if they're frequent enough to be included and generate itemsets of the next larger size the same way.  Once we have generated our frequent itemsets, then we just combine them as many ways as we can to generate our rules!</p>
+			</div> <!--end of ItemsetGeneration-->
+		</div> <!--end of content-->
+		<div class="MoreInfo">
+			<h2>More Information</h2>
+			<p>See chapter 6 of <em>Introduction to Data Mining</em> by Tan, Steinbach, and Kumar, 2006.</p>
+		</div> <!--end of MoreInfo-->
+		<div class="Copyright">
+			<p>&copy; 2011 by Oliver Chase. All rights reserved.</p>
+		</div>
+	</body>
+</html>

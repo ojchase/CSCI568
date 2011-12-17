@@ -1,0 +1,3 @@
+To run, just make sure the database kddTrack1.db is here in the same folder along with the data files (testData.txt, trainingData.txt, and validationData.txt) and just run it in ruby (ruby predict.rb).  It'll print out everything from there!
+
+@The dear grader.  Sorry my Ruby code conventions are not standard.  I'm still a JAVA programmer at heart, but needed to use ActiveRecord, which I halfway understand, instead of learning another program from scratch.
