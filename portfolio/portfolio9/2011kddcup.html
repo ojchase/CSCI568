@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Portfolio 9 - Application: 2011 KDD Cup Challenge, Track 1</title>
+		<meta name="author" content="Oliver"/>
+	</head>
+	<body>
+		<h1>Application: 2011 KDD Cup Challenge, Track 1</h1>
+		<div id="Content">
+			<div id="Writeup">
+				<p>This was definitely the most interesting project we’ve done this semester, but also the most daunting, mostly because of the enormous amount of data and the relationships among them preventing you from using an existing algorithm right off the shelf.  The hierarchy of item types needed to be investigated and really a lot of different approaches could be used.  I tried to keep mine simple, which is good because it still became very complex and took several times longer than any other project.</p>
+				<p>The first thing I did with the assignment was to look over the data set.  When everything is numeric, this didn’t provide a whole lot of information.  For some reason I did not open it up in any program to get summary stats, but perhaps that would have been helpful.  One problem I ran into later on was finding records that didn’t have associations.  For the enormous size of the data, there are very few ratings recorded.</p>
+				<p>So my first thought was to use the K Nearest Neighbors algorithm to predict track ratings.  My thought was to take every user who had rated a given track and then calculate the similarity to the current user.  Then we could sort this list and take the top 5 and average their ratings together.  In theory, I still think this could work well, but the problem is that our dataset is just too sparse to find five different people rating the same track with any regularity.  Then I realized that we’re not just rating tracks, but also genres, artists, and albums, and that threw that plan out of whack.</p>
+				<p>Regardless, the first thing I would realistically need to do is get this enormous amount of data into a database.  I’m sure this would be easy for the teacher, but it wasn’t for me.  First I had to go find a graphical interface.  I had written down Navicat Lite from class, and it took forever to find an installation file for it as most of the big sites had misplaced it.  But then actually setting up the database wasn’t too bad.  While importing the text files through Navicat, I quickly realized that the data had several “None” values (I knew this already, but had forgotten.) and had to do a few find/replace operations before I could successfully import the data.  The next issue was generating the foreign key tables to handle the many-to-many relationships between albums and genres, and genres and tracks. This took some more work, as my scripting skills are not all that good, but I eventually created some files in this format:<br />
+				9|600770<br />
+				9|584872<br />
+				9|247563<br />
+				Where previously there was one album/genre line more like (but not exactly like) this:<br />
+				9|600770|584872|247563</p>
+				<p>Then there was the issue of setting up an ORM to access all the data in an OO manner.  This probably took the most time, in part because I was unfamiliar with them (and didn’t trust myself without one for a project of this scale).  It took several hours of research and iterative development with poor man’s testing to ensure I had ActiveRecord set up correctly and could access all the data object relationships correctly.  Actually, I never did get my genre_tracks table working correctly, which caused problems ever after.  At first I just ignored it, thinking I could access the genres of a track indirectly through its album if I needed to.  I did a couple manual checks, and sure enough, the genres of a track appeared to be a duplicate of the genres given with the track’s album.  (This turned out to be false as I was debugging later on, however.  Some tracks provide genre information their owning albums do not know.)</p>
+				<p>Around this time I refined my planned algorithm.  My general reasoning is that the more specific the data we have access to, the more accurate a rating prediction is likely to be.  So if we have the choice between a user’s friends and the user’s own behavior, we should go with the user himself.  Also, the data is in a hierarchy, and it makes more sense for more general items (like an artist or a genre) to draw their ratings cumulatively from their constituents than the other way around.  So my ideal algorithm is threefold:</p>
+				<p>For each level (track, album, artist, genre), we can make predictions using some basic statistics (averaging) of the user’s actual behavior from lower levels and similar items and users.  So if we think about an album, the first factor should be your behavior with the album in the past.  Since an album “contains” tracks, we average any of the tracks on it which you personally have rated.  Second, we can look for other albums you have rated, sort them by similarity (assuming we have a reasonable similarity metric; mine was essentially Jaccard on the artist, genre list), and average the best.  Note that this is effectively K Nearest Neighbors.  And finally, we could again do K Nearest Neighbors on the other users who have rated the album, and average their best ratings.  Finally, I’d average, possibly weighting the factors, these three numbers to achieve my rating.  This whole process would be done for any “level” of the hierarchy, except obviously the tracks would not be able to take advantage of their own rating!</p>
+
+				<p>As I began to implement this, it quickly became apparent that it was simply too much.  For one thing, it’s not clear what a good similarity metric for a user is.  On the one hand, you want a SMC/Jaccard-like factor of noticing which items the users have rated, but you also want to be able to take into account the differences in their ratings, which is like Euclidean Distance.  So some blend of the two might be useful, but would probably take more than a couple weeks of work to get good.  For this project we eliminated the third ‘other user’ factor entirely, but future work for an actual competition would probably need to compare to other users to make better predictions, especially at first.  So to start I wrote the Jaccard similarity metrics for albums and tracks:</p>
+				<pre>
+	def jaccardTracks(track1, track2)
+	  compareableFields = 0 # just a count of the total number of attributes being compared
+							# possibly an artist, possibly album, 0+ genres
+	  matchingFields = 0
+	  if !(track1.artist == nil && track2.artist == nil)
+		compareableFields += 1
+		if(track1.artist == track2.artist)
+		  matchingFields += 1
+		end
+	  end
+	  if !(track1.album == nil && track2.album == nil)
+		compareableFields += 1
+		if(track1.album == track2.album)
+		  matchingFields += 1
+		end
+	  end
+		
+	  genreMatching = genreMatchCount(track1.genres, track2.genres)
+	  matchingFields += genreMatching[0]
+	  compareableFields += genreMatching[1] 
+
+	  if compareableFields == 0 #this is possible, if neither track had any info
+		return 0.5 #arbitrary
+	  else
+		return matchingFields.to_f / compareableFields
+	  end
+	end
+
+	def jaccardAlbums(album1, album2)
+	  compareableFields = 0 # just a count of the total number of attributes being compared
+							# possibly an artist, 0+ genres
+	  matchingFields = 0
+	  if !(album1.artist == nil && album2.artist == nil)
+		compareableFields += 1
+		if(album1.artist == album2.artist)
+		  matchingFields += 1
+		end
+	  end
+	  
+	  genreMatching = genreMatchCount(album1.genres, album2.genres)
+	  matchingFields += genreMatching[0]
+	  compareableFields += genreMatching[1] 
+	  
+	  if compareableFields == 0 #this is possible, if neither album had any info
+		return 0.5 #arbitrary
+	  else
+		return matchingFields.to_f / compareableFields
+	  end
+	end
+				</pre>
+				<p>genreMatchCount does much the same thing using the two lists of genres and returns the number of fields in common and the total number of distinct fields.</p>
+
+				<p>Again, I hit a wall trying to implement a similarity metric for artists or genres, as they provide no information to compare.  The only thing you can compare are the tracks and albums held within, which kind of defeats the whole hierarchical thing.  So I again decided to ignore the ‘how have I liked similar artists?’ factor and just use the user’s ratings for tracks and albums that used this genre or artist.  This seemed like a good approach at the time, but as you’ll see with the results, it didn’t work the greatest.  I still think it would, but the issue here was that the users had simply not rated enough material on their own.  So we might be averaging zero ratings of any track or album with a given genre.  Since that doesn’t mathematically work, I returned a default value of 50, and this number appears far more than I’d like.  The code for these drew from four methods (one for albums and one for tracks, averaged together, and distinct versions for artists and genres that looked a lot like this one:</p>
+				<pre>
+	  def predictArtistFromAlbums(artistID)
+		ratedAlbumsFromThisArtist = []
+		@albumRatings.each do |album|
+		  albumID = album[0]
+		  albumArtist = Album.find(albumID).artist
+		  if albumArtist != nil && albumArtist.id.to_s == artistID.to_s
+			ratedAlbumsFromThisArtist.push(albumID)
+		  end
+		end
+		
+		numOfRatings = ratedAlbumsFromThisArtist.length
+		if(numOfRatings == 0)
+		  return -1 #if no other guess
+		end
+		ratingSum = 0
+		ratedAlbumsFromThisArtist.each do |albumID|
+		  ratingSum += @albumRatings[albumID].to_f
+		end
+		result = ratingSum / numOfRatings.to_f
+		#puts "album result: #{result}"
+		return result
+	  end
+				</pre>
+				<p>The -1 returned in the unfortunate case is caught by a calling method and if both the Albums and Tracks returned -1, we convert it to a 50.  Otherwise, we use the one that actually returned a meaningful result.  In theory this would be usable as another component for album rating prediction, but I didn’t get that far and it would’ve just added more processing.  One problem here is that I never did get ORM connectivity between genres and tracks, so the genre prediction is based solely on your ratings for albums in the genre.  With the sparse data set, this is utterly worthless.  I did test that it worked by forcing a nonexistent connection into the database, but that is why 50 is returned everywhere for genre prediction, as you’ll see below.</p>
+
+				<p>As for the tracks and albums themselves, the similarity metrics worked great, and ratings could be calculated by comparing to the most similar other albums/tracks you’d rated in the past, like this:</p>
+				<pre>
+	  def predictTrack(trackID)
+		if @trackRatings.length == 0
+		  return 50 #eh, it's a decent pure guess
+		end
+		
+		trackToPredict = Track.find(trackID)
+		trackSimilarities = {}
+		@trackRatings.each do |track|
+		  trackID = track[0]
+		  similarityScore = jaccardTracks(Track.find(trackID), trackToPredict)
+		  trackSimilarities[trackID] = similarityScore
+		end
+		
+		trackSimilarities.sort_by {|trackID, similarityScore| similarityScore}
+		#puts trackSimilarities.inspect
+		  
+		#KNN most similar tracks:
+		numTracksToUse = [0.1*trackSimilarities.size, 5].min #we want 5 nearest neighbors, and we'll also limit to the closest 10%
+		ratingSum = 0
+		for similarTrack in 0...numTracksToUse-1
+		  trackID = trackSimilarities.keys[similarTrack]
+		  rating = @trackRatings[trackID]
+		  ratingSum += rating.to_i
+		end
+		return ratingSum / numTracksToUse.to_f
+	  end
+				</pre>
+				<p>So how did the predictions work?  Not well.  The default 50 ratings are far too prevalent for the reasons described before.  I think the problem would go away partially with a more full data set.  We need users to rate more material so we can make the necessary interconnections.  (Maybe this is why Netflix is always suggesting we rate more films!)  Luckily this is just a practice exercise and the real participants in the contests had months to refine their techniques.  But there are a few cases (albums and tracks) where my results are interestingly close to the validation data’s correct answers.  My results are inserted below in case you enjoy pain enough to read them.  I hope there is a more efficient way to do the work I’ve described, let alone expand upon it, because just this took about five hours for my computer to crunch.  Overall, it’s a relatively fun project, but one that really does deserve a competition of several months to do well.</p>
+			</div><!-- end of writeup-->
+			<div id="Results">
+			<p>
+			</p>
+			</div><!-- end of results-->
+		</div> <!-- end of Content-->
+		<div id="MoreInfo">
+			<h2>More Information</h2>
+			<a href="http://kddcup.yahoo.com/">KDD Cup</a>
+		</div> <!--end of MoreInfo-->
+		<div id="Copyright">
+			<p>&copy; 2011 by Oliver Chase. All rights reserved.</p>
+		</div>
+	</body>
+</html>

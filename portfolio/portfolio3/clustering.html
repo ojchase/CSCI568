@@ -31,7 +31,153 @@
 					<img src="kMeans/step4.png" alt="Points have changed centroids">
 					<p>When do we stop?  This may depend on how complex your dataset is, but the easiest reasonable stopping condition is when you go through a full iteration with no point changing its centroid selection.  Another might be to stop when the SSE (a measure of the tightness of the clusters) fails to improve, but that's a little outside the scope of this page.  Here, the centroids are now about where you'd expect and the points are all clustered correctly.  You can continue running the algorithm all you want, but no point is ever going to switch clusters, so it's effectively done.</p>
 					<img src="kMeans/step5.png" alt="Centroids have moved, and points will not change clusters again">
-					<p>K-Means is a relatively simple algorithm to implement (see below, I actually did implement this one) but does have some issues to address.  For one thing, you need to decide how many clusters to use.  One approach is to use the aforementioned, but intentionally not described, SSE to decide the correct number.  You just run the algorithm multiple times with multiple K and at some point the SSE will begin to behave differently than before if you plot it against K.  (A "knee" in the graph.)  It's effectively a big optimization problem, allowing you to find an ideal K.  We also need to recognize that K-Means will not do well with outliers (which may tug at the centroids excessively) or non-globular shapes.  Give it two intersecting lines to work with, and you will not be happy with the results!</p>
+					<p>In summary, K-Means is a relatively simple algorithm to implement (see below, I actually did implement this one) but does have some issues to address.  For one thing, you need to decide how many clusters to use.  One approach is to use the aforementioned, but intentionally not described, SSE to decide the correct number.  You just run the algorithm multiple times with multiple K and at some point the SSE will begin to behave differently than before if you plot it against K.  (A "knee" in the graph.)  It's effectively a big optimization problem, allowing you to find an ideal K.  We also need to recognize that K-Means will not do well with outliers (which may tug at the centroids excessively) or non-globular shapes.  Give it two intersecting lines to work with, and you will not be happy with the results!</p>
+					<pre>
+class KMeans
+  #returns the cumulative SSE from adding each of them together
+  def run(objects, k, print)
+    centroids = initCentroids(objects, k)
+    #print(centroids)
+    nochanges = false
+
+    while(!nochanges)
+      nochanges = true
+      objects.each do |obj|
+        moved = pickNearestCentroid(obj, centroids)
+        if(moved)
+          nochanges = false
+        end
+      end
+
+      recalculateCentroids(objects, centroids)
+
+    end
+
+    cumulativeSSE = showResults(objects, centroids, print)
+    return cumulativeSSE
+  end
+
+  #returns the from all the clusters sse
+  def showResults(objects, centroids, print)
+    sse = 0
+    if (print)
+      centroids.each do |centroid|
+        puts centroid
+        puts "Includes the following points:"
+        objects.each do |obj|
+          if(obj.getCentroid == centroid)
+            puts "    #{obj}"
+          end
+        end
+        puts("SSE: #{sse(objects, centroid)}")
+        puts
+        sse = sse + sse(objects, centroid)
+      end
+    else
+      centroids.each do |centroid|
+        sse = sse + sse(objects, centroid)
+      end
+    end
+    return sse
+  end
+
+  def sse(objects, centroid)
+    sse = 0
+    objects.each do |obj|
+      if(obj.getCentroid == centroid)
+        sse = sse + (euclideanNotNormalized(obj, centroid.getDataPoint))**2
+      end
+    end
+    return sse
+  end
+
+  def recalculateCentroids(objects, centroids)
+    len = objects[0].values.length
+    centroids.each do |centroid|
+      dimensionSums = Array.new(len)
+      dimensionSums.fill(0)
+      usingCentroid = 0
+      #puts "Centroid #{centroid.getID} started at #{centroid.getCoordinates}"
+      objects.each do |obj|
+        if(obj.getCentroid == centroid)
+          #puts "   #{obj} is on this centroid!"
+          for i in (0..len-1)
+            dimensionSums[i] = dimensionSums[i] + obj.values[i]
+          end
+          usingCentroid = usingCentroid + 1
+        end
+      end
+      #print dimensionSums
+      for i in (0..dimensionSums.length - 1)
+        #puts dimensionSums[i]
+        #puts usingCentroid
+        dimensionSums[i] = dimensionSums[i] / usingCentroid.to_f
+      end
+      if(usingCentroid == 0) #we'll just move the centroid to a random point - better than having an empty cluster!
+        dimensionSums = objects[rand(objects.length)].values
+      end
+      centroid.setCoordinates(dimensionSums)
+      #puts "Centroid #{centroid.getID} moved to #{centroid.getCoordinates}"
+    end
+  end
+
+  #moves object to the closest centroid and returns true if it moved
+  def pickNearestCentroid(object, centroids)
+    #puts "#{object} is currently on centroid #{object.getCentroid}"
+    currentCentroid = object.getCentroid()
+
+    len = centroids.length
+    distanceToCentroids = Array.new(len)
+
+    for i in (0..len-1)
+      #puts "    #{object} is #{1 - euclidean(object, centroids[i].getDataPoint)} from #{centroids[i]}"
+      distanceToCentroids[i] = 1 - euclidean(object, centroids[i].getDataPoint)
+    end
+    closestCentroid = centroids[distanceToCentroids.index(distanceToCentroids.min)]
+    object.setCentroid(closestCentroid)
+    #puts "#{object} is now on centroid #{object.getCentroid}"
+    return currentCentroid.nil? || currentCentroid != closestCentroid
+  end
+
+  def initCentroids(objects, k)
+    len = objects[0].values.length
+    objects.each do |obj|
+      if(len != obj.values.length)
+        return "Clustering can't continue as objects have a different number of attributes!"
+      end
+    end
+    minBounds = Array.new(len)
+    maxBounds = Array.new(len)
+
+    #Calculate the minimum and maximum allowable value for each attribute
+    objects.each do |obj|
+      i = 0
+      obj.values.each do |value|
+        if(minBounds[i].nil? || minBounds[i] > value)
+          minBounds[i] = value
+        end
+        if(maxBounds[i].nil? || maxBounds[i] < value)
+          maxBounds[i] = value
+        end
+        i = i + 1
+      end
+    end
+
+    #Randomly pick centroids in that range!
+    centroids = Array.new(k)
+    r = Random.new
+    for i in (0..k-1)
+      center = Array.new(len)
+      for j in (0..len-1)
+        center[j] = rand(maxBounds[j] - minBounds[j]) + minBounds[j]
+      end
+      centroids[i] = Centroid.new(i, center)
+    end
+    return centroids
+  end
+
+end
+					</pre>
 				</div> <!-- end of KMeans-->
 				<div id="AgglomerativeHierarchical">
 					<h3>Agglomerative Hierarchical</h3>
@@ -53,6 +199,9 @@
 				</div> <!-- end of AgglomerativeHierarchical-->
 				<div id="DBSCAN">
 					<h3>DBSCAN</h3>
+					<p>Our class had trouble getting the idea behind DBSCAN, which presumably stands for Density-Based Scan, but the idea is actually quite simple.  DBSCAN looks for areas of some density by finding "core" points which have the required number of points around them within the given range.  For a real life example, if you want a density of 3 people per square mile, you could look at every person in the country and draw a circle outward with an area of a square mile.  Any person that encounters three people around him in that region is in an area of at least that density.  We call these people (or points) "core" points, and they define a cluster, along with the people they encountered.  If any of those people are themselves core points, we include their close connections, and so grow the cluster out.  Any connections that are around a core point but do not have enough close connections of their own to meet the density requirement are called "border" points.  We don't care about any other points and throw them out as noise.</p>
+					<p>Again, the exact algorithm you use to get to the result is debateable and can be optimized, but the end result is that every point is classified as either a core point, border point, or noise.  The core points have some number of connections within some distance of themselves, and you get to set those parameters.  The border points connect to a core point, but are not themselves connected enough to be core points.  The others are noise and are discarded.</p>
+					<p>DBSCAN has two main advantages.  One is that it can tolerate and even eliminate noise.  It's built right into the algorithm!  The other is that it can find non-globular regions, as the core points can be in any shape, provided that they can connect to each other.</p>
 				</div> <!-- end of DBSCAN-->
 			</div> <!-- end of algorithms-->
 		</div> <!--end of content-->
